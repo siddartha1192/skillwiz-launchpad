@@ -59,9 +59,8 @@ export default function Navbar() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 md:h-[72px]">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-1.5 text-white font-bold text-xl md:text-2xl tracking-tight">
-          my<span className="text-white">Skill</span>Wiz
-          <Zap className="text-accent w-5 h-5 -ml-0.5" fill="hsl(var(--orange))" />
+        <a href="#" className="flex items-center">
+          <img src="/logo-white.jpg" alt="mySkillWiz" className="h-10 md:h-12 w-auto" />
         </a>
 
         {/* Desktop nav */}

@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 md:h-[72px]">
         {/* Logo */}
         <a href="#" className="flex items-center">
-          <img src="/logo-white.jpg" alt="mySkillWiz" className="h-10 md:h-12 w-auto" />
+          <img src="/logo-white.png" alt="mySkillWiz" className="h-10 md:h-12 w-auto" />
         </a>
 
         {/* Desktop nav */}

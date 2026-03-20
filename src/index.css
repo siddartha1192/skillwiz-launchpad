@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 220 60% 98.5%;
     --foreground: 226 78% 11%;
 
     --card: 0 0% 100%;
@@ -64,7 +64,13 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
+    background:
+      radial-gradient(ellipse 90% 55% at 10% 65%, rgba(30, 200, 232, 0.055) 0%, transparent 70%),
+      radial-gradient(ellipse 70% 45% at 90% 10%, rgba(255, 122, 26, 0.045) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 55% 95%, rgba(129, 140, 248, 0.04) 0%, transparent 60%),
+      #F7F9FF;
+    background-attachment: fixed;
   }
 }
 

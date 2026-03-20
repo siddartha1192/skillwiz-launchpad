@@ -1,56 +1,118 @@
-import { Play, CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Play, CheckCircle, Sparkles } from "lucide-react";
+import HeroIllustration from "./HeroIllustration";
 
 const badges = ["50,000+ Students", "200+ Institutes", "AI-Powered Learning"];
 
 export default function HeroSection() {
-  return (
-    <section id="home" className="bg-navy-gradient relative min-h-screen flex items-center overflow-hidden">
-      {/* Floating glows */}
-      <div className="absolute top-20 right-1/4 w-72 h-72 rounded-full bg-accent/5 blur-3xl animate-glow-pulse" />
-      <div className="absolute bottom-20 left-10 w-56 h-56 rounded-full bg-accent/5 blur-3xl animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
-      <div className="absolute top-1/3 right-10 w-4 h-4 rounded-full bg-accent/30 animate-float" />
-      <div className="absolute top-2/3 left-1/3 w-3 h-3 rounded-full bg-accent/20 animate-float" style={{ animationDelay: "2s" }} />
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-24 pb-16 grid lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
-        {/* Left */}
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      setMouse({
+        x: (e.clientX / window.innerWidth  - 0.5) * 22,
+        y: (e.clientY / window.innerHeight - 0.5) * 14,
+      });
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #d6f2f9 0%, #edf8fc 22%, #f8fdff 45%, #f0eeff 70%, #e8e4ff 100%)",
+      }}
+    >
+      {/* ── Background blobs ── */}
+      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full blur-[100px] opacity-40 pointer-events-none"
+        style={{ background: "radial-gradient(circle, #1EC8E828 0%, transparent 70%)" }} />
+      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] rounded-full blur-[80px] opacity-35 pointer-events-none"
+        style={{ background: "radial-gradient(circle, #818CF822 0%, transparent 70%)" }} />
+
+      {/* ── Dot-grid texture ── */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.032]"
+        style={{ backgroundImage: "radial-gradient(circle, #0d1b3e 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+
+      {/* ── Main grid ── */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-28 pb-16 grid lg:grid-cols-2 gap-10 items-center relative z-10 w-full">
+
+        {/* ── LEFT — copy ── */}
         <div className="animate-slide-in-left">
-          <span className="section-label">AI-POWERED LEARNING PLATFORM</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mt-4 mb-6" style={{ textWrap: "balance" }}>
-            Your Shortcut to<br />Campus Placement<br />& GATE Success
+
+          {/* Pill badge */}
+          <div
+            className="inline-flex items-center gap-2 text-xs font-semibold tracking-[2px] uppercase px-4 py-2 rounded-full mb-6 border"
+            style={{ background: "rgba(30,200,232,0.09)", color: "#0fa8c8", borderColor: "rgba(30,200,232,0.25)" }}
+          >
+            <Sparkles size={11} />
+            AI-Powered Learning Platform
+          </div>
+
+          {/* Headline */}
+          <h1
+            className="text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.12] mb-6"
+            style={{ color: "#0d1b3e" }}
+          >
+            Your Shortcut to<br />
+            <span style={{ color: "#1EC8E8" }}>Campus Placement</span><br />
+            &amp;&nbsp;<span style={{ color: "#5353C8" }}>GATE Success</span>
           </h1>
-          <p className="text-light text-base md:text-lg leading-relaxed max-w-lg mb-8" style={{ lineHeight: 1.7 }}>
-            India's smartest EdTech platform using AI, analytics, and personalized learning paths to take engineering students from college to career.
+
+          {/* Sub-copy */}
+          <p className="text-base md:text-lg leading-[1.78] max-w-lg mb-9"
+            style={{ color: "rgba(13,27,62,0.56)" }}>
+            India's smartest EdTech platform using AI, analytics, and
+            personalized learning paths to take engineering students from
+            college to career.
           </p>
-          <div className="flex flex-wrap gap-4 mb-8">
-            <button className="btn-primary flex items-center gap-2">Explore Products</button>
-            <button className="btn-outline-white flex items-center gap-2">
-              <Play size={18} fill="white" /> Watch Demo
+
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-4 mb-9">
+            <button
+              className="btn-primary flex items-center gap-2"
+              style={{ boxShadow: "0 10px 28px rgba(255,122,26,0.30)" }}
+            >
+              Explore Products
+            </button>
+            <button
+              className="flex items-center gap-3 font-semibold px-6 py-3 rounded-full border-2 transition-all duration-200 hover:scale-[1.02]"
+              style={{ color: "#0d1b3e", borderColor: "rgba(13,27,62,0.14)", background: "rgba(255,255,255,0.70)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(13,27,62,0.28)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(13,27,62,0.14)")}
+            >
+              <span className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ background: "rgba(255,122,26,0.12)" }}>
+                <Play size={13} fill="#FF7A1A" color="#FF7A1A" className="ml-[2px]" />
+              </span>
+              Watch Demo
             </button>
           </div>
+
+          {/* Trust badges */}
           <div className="flex flex-wrap gap-5">
             {badges.map((b) => (
-              <span key={b} className="flex items-center gap-2 text-white/70 text-sm">
-                <CheckCircle size={16} className="text-accent" /> {b}
+              <span key={b} className="flex items-center gap-2 text-sm"
+                style={{ color: "rgba(13,27,62,0.52)" }}>
+                <CheckCircle size={15} style={{ color: "#1EC8E8" }} />
+                {b}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Right — abstract dashboard mockup */}
-        <div className="hidden lg:flex justify-center animate-slide-in-right">
-          <div className="relative w-[420px] h-[360px] animate-float">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-white/10 backdrop-blur-sm" />
-            <div className="absolute top-6 left-6 right-6 h-3 rounded-full bg-white/10" />
-            <div className="absolute top-14 left-6 w-2/3 h-3 rounded-full bg-white/10" />
-            <div className="absolute top-24 left-6 right-6 bottom-6 rounded-xl bg-white/5 border border-white/10 p-4 grid grid-cols-3 gap-3">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="rounded-lg bg-gradient-to-br from-accent/20 to-transparent border border-white/10" />
-              ))}
-            </div>
-            {/* Orbit ring */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 border border-accent/20 rounded-full animate-[spin_20s_linear_infinite]">
-              <div className="absolute top-0 left-1/2 w-3 h-3 -ml-1.5 rounded-full bg-accent/50" />
-            </div>
+        {/* ── RIGHT — SVG illustration with mouse parallax ── */}
+        <div className="hidden lg:flex justify-center items-center animate-slide-in-right">
+          <div
+            style={{
+              transform: `translate(${mouse.x * 0.22}px, ${mouse.y * 0.22}px)`,
+              transition: "transform 100ms ease-out",
+            }}
+          >
+            <HeroIllustration />
           </div>
         </div>
       </div>

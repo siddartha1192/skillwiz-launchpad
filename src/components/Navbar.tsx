@@ -50,25 +50,34 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-navy shadow-[0_2px_24px_rgba(0,0,0,0.35)] backdrop-blur-sm"
-          : "bg-transparent"
+          ? "shadow-[0_6px_32px_rgba(30,200,232,0.10),0_2px_12px_rgba(0,0,0,0.07)]"
+          : "shadow-[0_4px_20px_rgba(30,200,232,0.07),0_1px_6px_rgba(0,0,0,0.04)]"
       }`}
+      style={{
+        background: scrolled
+          ? "linear-gradient(105deg, #e4f6fb 0%, #f5fcff 18%, #ffffff 45%, #f0eeff 72%, #eae8ff 100%)"
+          : "linear-gradient(105deg, #dff4fa 0%, #f2fafd 20%, #ffffff 48%, #eeecff 75%, #e6e3ff 100%)",
+      }}
     >
       {/* Top accent line */}
-      <div className="h-[2px] bg-orange-gradient w-full" />
+      <div className="h-[3px] bg-orange-gradient w-full" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 md:h-[72px]">
-        {/* Logo */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 md:h-[68px]">
+
+        {/* Logo — uses the actual brand image; white navbar = perfect blend */}
         <a href="#" className="flex items-center">
-          <img src="/logo-white.png" alt="mySkillWiz" className="h-10 md:h-12 w-auto" />
+          <img
+            src="/logo-white.png"
+            alt="SkillWiz"
+            className="h-9 md:h-11 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
-          {/* Home */}
+        <div className="hidden lg:flex items-center gap-0.5">
           <button
             onClick={() => scrollTo("home")}
-            className="text-white/75 hover:text-white text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors hover:bg-white/[0.06]"
+            className="text-navy/65 hover:text-navy text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors hover:bg-navy/[0.05]"
           >
             Home
           </button>
@@ -81,7 +90,9 @@ export default function Navbar() {
           >
             <button
               className={`flex items-center gap-1 text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors ${
-                productsOpen ? "text-white bg-white/[0.08]" : "text-white/75 hover:text-white hover:bg-white/[0.06]"
+                productsOpen
+                  ? "text-navy bg-navy/[0.06]"
+                  : "text-navy/65 hover:text-navy hover:bg-navy/[0.05]"
               }`}
               onClick={() => scrollTo("products")}
             >
@@ -100,7 +111,7 @@ export default function Navbar() {
                   : "opacity-0 -translate-y-2 pointer-events-none"
               }`}
             >
-              <div className="w-[420px] bg-card rounded-xl shadow-[0_16px_48px_rgba(0,0,0,0.18)] border border-border/60 overflow-hidden">
+              <div className="w-[420px] bg-white rounded-xl shadow-[0_16px_48px_rgba(0,0,0,0.13)] border border-gray-100 overflow-hidden">
                 <div className="px-5 pt-4 pb-2">
                   <p className="text-[11px] font-semibold tracking-[2px] uppercase text-accent">Our Products</p>
                 </div>
@@ -109,14 +120,14 @@ export default function Navbar() {
                     <button
                       key={p.title}
                       onClick={() => scrollTo(p.id)}
-                      className="flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-left transition-colors hover:bg-secondary group"
+                      className="flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-left transition-colors hover:bg-gray-50 group"
                     >
                       <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
                         <p.icon size={18} className="text-accent" />
                       </div>
                       <div>
-                        <span className="text-sm font-semibold text-foreground block leading-tight">{p.title}</span>
-                        <span className="text-xs text-muted-foreground leading-tight">{p.desc}</span>
+                        <span className="text-sm font-semibold text-navy block leading-tight">{p.title}</span>
+                        <span className="text-xs text-navy/50 leading-tight">{p.desc}</span>
                       </div>
                     </button>
                   ))}
@@ -125,12 +136,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Other links */}
+          {/* Other nav links */}
           {navLinks.slice(1).map((l) => (
             <button
               key={l.label}
               onClick={() => scrollTo(l.id)}
-              className="text-white/75 hover:text-white text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors hover:bg-white/[0.06]"
+              className="text-navy/65 hover:text-navy text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors hover:bg-navy/[0.05]"
             >
               {l.label}
             </button>
@@ -139,7 +150,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-3">
-          <button className="text-white/75 hover:text-white text-sm font-medium transition-colors px-4 py-2 rounded-md hover:bg-white/[0.06]">
+          <button className="text-navy/65 hover:text-navy text-sm font-medium transition-colors px-4 py-2 rounded-md hover:bg-navy/[0.05]">
             Login
           </button>
           <button className="btn-primary text-sm px-6 py-2.5">Get Started</button>
@@ -148,7 +159,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors"
+          className="lg:hidden text-navy/70 p-2 rounded-md hover:bg-navy/[0.06] transition-colors"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -156,11 +167,11 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="lg:hidden bg-navy border-t border-white/10 animate-slide-up">
+        <div className="lg:hidden animate-slide-up" style={{ background: "linear-gradient(160deg, #e4f6fb 0%, #f8fdff 30%, #ffffff 55%, #eeeeff 100%)" }}>
           <div className="px-4 py-4 flex flex-col gap-1">
             <button
               onClick={() => scrollTo("home")}
-              className="text-white/80 hover:text-white text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-white/[0.06] transition-colors"
+              className="text-navy/70 hover:text-navy text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-navy/[0.05] transition-colors"
             >
               Home
             </button>
@@ -169,7 +180,7 @@ export default function Navbar() {
             <div>
               <button
                 onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                className="w-full flex items-center justify-between text-white/80 hover:text-white text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-white/[0.06] transition-colors"
+                className="w-full flex items-center justify-between text-navy/70 hover:text-navy text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-navy/[0.05] transition-colors"
               >
                 Products
                 <ChevronDown
@@ -178,15 +189,15 @@ export default function Navbar() {
                 />
               </button>
               {mobileProductsOpen && (
-                <div className="ml-3 pl-3 border-l border-white/10 mt-1 mb-2 flex flex-col gap-0.5">
+                <div className="ml-3 pl-3 border-l-2 border-accent/20 mt-1 mb-2 flex flex-col gap-0.5">
                   {products.map((p) => (
                     <button
                       key={p.title}
                       onClick={() => scrollTo(p.id)}
-                      className="flex items-center gap-3 py-2 px-3 rounded-md text-left hover:bg-white/[0.06] transition-colors"
+                      className="flex items-center gap-3 py-2 px-3 rounded-md text-left hover:bg-navy/[0.05] transition-colors"
                     >
                       <p.icon size={16} className="text-accent shrink-0" />
-                      <span className="text-white/70 text-sm">{p.title}</span>
+                      <span className="text-navy/70 text-sm">{p.title}</span>
                     </button>
                   ))}
                 </div>
@@ -197,14 +208,14 @@ export default function Navbar() {
               <button
                 key={l.label}
                 onClick={() => scrollTo(l.id)}
-                className="text-white/80 hover:text-white text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-white/[0.06] transition-colors"
+                className="text-navy/70 hover:text-navy text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-navy/[0.05] transition-colors"
               >
                 {l.label}
               </button>
             ))}
 
-            <div className="flex gap-3 pt-3 mt-2 border-t border-white/10">
-              <button className="text-white/80 text-sm font-medium px-3 py-2">Login</button>
+            <div className="flex gap-3 pt-3 mt-2 border-t border-gray-100">
+              <button className="text-navy/70 text-sm font-medium px-3 py-2">Login</button>
               <button className="btn-primary text-sm px-5 py-2">Get Started</button>
             </div>
           </div>

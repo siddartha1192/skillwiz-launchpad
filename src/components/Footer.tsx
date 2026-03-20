@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <a href="#" className="inline-block mb-3">
-            <img src="/logo-white.jpg" alt="mySkillWiz" className="h-10 w-auto" />
+            <img src="/logo-white.png" alt="mySkillWiz" className="h-10 w-auto" />
           </a>
           <p className="text-white/50 text-sm leading-relaxed mb-5">Empowering Skills. Shaping Futures.</p>
           <div className="flex gap-3">

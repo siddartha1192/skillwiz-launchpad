@@ -141,18 +141,18 @@
   }
 
   @keyframes slide-up {
-    from { opacity: 0; transform: translateY(24px); filter: blur(4px); }
-    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    from { opacity: 0; transform: translateY(32px); filter: blur(5px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
   }
 
   @keyframes slide-in-left {
-    from { opacity: 0; transform: translateX(-24px); filter: blur(4px); }
-    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+    from { opacity: 0; transform: translateX(-32px); filter: blur(5px); }
+    to   { opacity: 1; transform: translateX(0);     filter: blur(0);   }
   }
 
   @keyframes slide-in-right {
-    from { opacity: 0; transform: translateX(24px); filter: blur(4px); }
-    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+    from { opacity: 0; transform: translateX(32px); filter: blur(5px); }
+    to   { opacity: 1; transform: translateX(0);    filter: blur(0);   }
   }
 
   /* ── Hero-specific animations ── */
@@ -177,6 +177,21 @@
     100% { transform: translateX(-50%); }
   }
 
+  @keyframes hookFadeIn {
+    from { opacity: 0; transform: translateY(16px); filter: blur(4px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+  }
+
+  @keyframes institutesLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+
+  @keyframes institutesRight {
+    0%   { transform: translateX(-33.333%); }
+    100% { transform: translateX(0); }
+  }
+
   .animate-float {
     animation: float 4s ease-in-out infinite;
   }
@@ -186,21 +201,23 @@
   }
 
   .animate-slide-up {
-    animation: slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: slide-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-slide-in-left {
-    animation: slide-in-left 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: slide-in-left 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-slide-in-right {
-    animation: slide-in-right 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: slide-in-right 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 
 /* ── Hero gradient text ── */
 .hero-gradient-text {
-  background: linear-gradient(135deg, #1EC8E8 0%, #818CF8 45%, #1EC8E8 90%);
+  display: inline-block;
+  padding-bottom: 0.12em;
+  background: linear-gradient(135deg, #1EC8E8 0%, #a5f3fc 50%, #1EC8E8 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

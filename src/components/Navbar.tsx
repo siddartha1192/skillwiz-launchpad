@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Crosshair, Brain, School, BarChart3, BookOpen, Bot } from "lucide-react";
 
 const navLinks = [
@@ -9,12 +10,12 @@ const navLinks = [
 ];
 
 const products = [
-  { icon: Crosshair, title: "MyPlacement", desc: "AI-driven campus placement prep", id: "products" },
-  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation", id: "products" },
-  { icon: School, title: "Institute Suite", desc: "Assessment & analytics for colleges", id: "products" },
-  { icon: BarChart3, title: "NEAT Assessment", desc: "Campus recruitment & coding tests", id: "products" },
-  { icon: BookOpen, title: "Coaching Platform", desc: "JEE, NEET, SSC & more", id: "products" },
-  { icon: Bot, title: "AI GPS Learning", desc: "Personalized AI study plans", id: "products" },
+  { icon: Crosshair, title: "MyPlacement", desc: "AI-driven campus placement prep", id: "products", href: "/placement" },
+  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation", id: "products", href: null },
+  { icon: School, title: "Institute Suite", desc: "Assessment & analytics for colleges", id: "products", href: null },
+  { icon: BarChart3, title: "NEAT Assessment", desc: "Campus recruitment & coding tests", id: "products", href: null },
+  { icon: BookOpen, title: "Coaching Platform", desc: "JEE, NEET, SSC & more", id: "products", href: null },
+  { icon: Bot, title: "AI GPS Learning", desc: "Personalized AI study plans", id: "products", href: null },
 ];
 
 export default function Navbar() {
@@ -23,6 +24,9 @@ export default function Navbar() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -33,8 +37,12 @@ export default function Navbar() {
   const scrollTo = (id: string) => {
     setMobileOpen(false);
     setProductsOpen(false);
-    const el = document.getElementById(id.toLowerCase().replace(/\s/g, "-"));
-    el?.scrollIntoView({ behavior: "smooth" });
+    if (isHome) {
+      const el = document.getElementById(id.toLowerCase().replace(/\s/g, "-"));
+      el?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(`/#${id.toLowerCase().replace(/\s/g, "-")}`);
+    }
   };
 
   const handleDropdownEnter = () => {
@@ -65,13 +73,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16 md:h-[68px]">
 
         {/* Logo — uses the actual brand image; white navbar = perfect blend */}
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="/logo-white.png"
             alt="SkillWiz"
             className="h-9 md:h-11 w-auto object-contain"
           />
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-0.5">
@@ -116,21 +124,29 @@ export default function Navbar() {
                   <p className="text-[11px] font-semibold tracking-[2px] uppercase text-accent">Our Products</p>
                 </div>
                 <div className="px-2 pb-3 grid grid-cols-1 gap-0.5">
-                  {products.map((p) => (
-                    <button
-                      key={p.title}
-                      onClick={() => scrollTo(p.id)}
-                      className="flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-left transition-colors hover:bg-gray-50 group"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
-                        <p.icon size={18} className="text-accent" />
-                      </div>
-                      <div>
-                        <span className="text-sm font-semibold text-navy block leading-tight">{p.title}</span>
-                        <span className="text-xs text-navy/50 leading-tight">{p.desc}</span>
-                      </div>
-                    </button>
-                  ))}
+                  {products.map((p) => {
+                    const inner = (
+                      <>
+                        <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
+                          <p.icon size={18} className="text-accent" />
+                        </div>
+                        <div>
+                          <span className="text-sm font-semibold text-navy block leading-tight">{p.title}</span>
+                          <span className="text-xs text-navy/50 leading-tight">{p.desc}</span>
+                        </div>
+                      </>
+                    );
+                    const cls = "flex items-center gap-3.5 px-3 py-2.5 rounded-lg text-left transition-colors hover:bg-gray-50 group";
+                    return p.href ? (
+                      <Link key={p.title} to={p.href} onClick={() => { setProductsOpen(false); setMobileOpen(false); }} className={cls}>
+                        {inner}
+                      </Link>
+                    ) : (
+                      <button key={p.title} onClick={() => scrollTo(p.id)} className={cls}>
+                        {inner}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -190,16 +206,24 @@ export default function Navbar() {
               </button>
               {mobileProductsOpen && (
                 <div className="ml-3 pl-3 border-l-2 border-accent/20 mt-1 mb-2 flex flex-col gap-0.5">
-                  {products.map((p) => (
-                    <button
-                      key={p.title}
-                      onClick={() => scrollTo(p.id)}
-                      className="flex items-center gap-3 py-2 px-3 rounded-md text-left hover:bg-navy/[0.05] transition-colors"
-                    >
-                      <p.icon size={16} className="text-accent shrink-0" />
-                      <span className="text-navy/70 text-sm">{p.title}</span>
-                    </button>
-                  ))}
+                  {products.map((p) => {
+                    const cls = "flex items-center gap-3 py-2 px-3 rounded-md text-left hover:bg-navy/[0.05] transition-colors";
+                    const inner = (
+                      <>
+                        <p.icon size={16} className="text-accent shrink-0" />
+                        <span className="text-navy/70 text-sm">{p.title}</span>
+                      </>
+                    );
+                    return p.href ? (
+                      <Link key={p.title} to={p.href} onClick={() => { setMobileOpen(false); setMobileProductsOpen(false); }} className={cls}>
+                        {inner}
+                      </Link>
+                    ) : (
+                      <button key={p.title} onClick={() => scrollTo(p.id)} className={cls}>
+                        {inner}
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Download } from "lucide-react";
 
@@ -11,7 +12,7 @@ export default function InstituteCTA() {
           Join 200+ engineering institutes already using mySkillWiz to improve placement rates, accreditation scores, and student outcomes.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="btn-white">Request a Demo</button>
+          <Link to="/demo" className="btn-white">Request a Demo</Link>
           <button className="btn-outline-white flex items-center gap-2"><Download size={18} /> Download Brochure</button>
         </div>
       </div>

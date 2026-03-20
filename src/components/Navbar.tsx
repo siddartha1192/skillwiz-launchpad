@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Zap, ChevronDown, Crosshair, Brain, School, BarChart3, BookOpen, Bot } from "lucide-react";
+import { Menu, X, ChevronDown, Crosshair, Brain, School, BarChart3, BookOpen, Bot } from "lucide-react";
 
 const navLinks = [
   { label: "Home", id: "home" },

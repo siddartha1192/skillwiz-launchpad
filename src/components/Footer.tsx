@@ -1,4 +1,4 @@
-import { Zap, Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 
 const products = ["MyPlacement", "SmartGATE", "NEAT Assessment", "Coaching Platform", "AI GPS Learning"];
 const company = ["About Us", "Careers", "Blog", "Contact"];
@@ -9,8 +9,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
         {/* Brand */}
         <div>
-          <a href="#" className="flex items-center gap-1.5 text-white font-bold text-xl mb-3">
-            mySkillWiz <Zap className="text-accent w-4 h-4" fill="hsl(var(--orange))" />
+          <a href="#" className="inline-block mb-3">
+            <img src="/logo-white.jpg" alt="mySkillWiz" className="h-10 w-auto" />
           </a>
           <p className="text-white/50 text-sm leading-relaxed mb-5">Empowering Skills. Shaping Futures.</p>
           <div className="flex gap-3">

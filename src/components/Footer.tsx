@@ -1,12 +1,64 @@
-import { Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Linkedin, Twitter, Instagram, Youtube, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const products = ["MyPlacement", "SmartGATE", "NEAT Assessment", "Coaching Platform", "AI GPS Learning"];
-const company  = ["About Us", "Careers", "Blog", "Contact"];
+const company: { label: string; href: string }[] = [
+  { label: "About Us", href: "/about" },
+  { label: "Careers",  href: "/careers" },
+  { label: "Blog",     href: "/blog" },
+  { label: "Contact",  href: "/#contact" },
+];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) setSubscribed(true);
+  };
+
   return (
     <footer id="contact" className="bg-navy-deep pt-16 pb-8 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
+
+        {/* ── Newsletter strip ── */}
+        <div className="rounded-2xl px-8 py-7 mb-10 flex flex-col sm:flex-row items-center justify-between gap-6"
+          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <div>
+            <p className="text-white font-bold text-lg leading-tight">Stay in the loop</p>
+            <p className="text-white/40 text-sm mt-0.5">Get updates on new features, placements &amp; tips.</p>
+          </div>
+          {subscribed ? (
+            <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#1EC8E8" }}>
+              <CheckCircle2 size={18} /> Thanks for subscribing!
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex items-center gap-2 w-full sm:w-auto">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="flex-1 sm:w-64 px-4 py-2.5 rounded-xl text-sm outline-none transition-all duration-200"
+                style={{
+                  background: "rgba(255,255,255,0.07)",
+                  border: "1.5px solid rgba(255,255,255,0.12)",
+                  color: "white",
+                }}
+                onFocus={e => { (e.target as HTMLElement).style.borderColor = "#1EC8E8"; }}
+                onBlur={e => { (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+              />
+              <button type="submit"
+                className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:scale-[1.04] shrink-0"
+                style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 6px 20px rgba(255,122,26,0.4)" }}>
+                Subscribe <ArrowRight size={14} />
+              </button>
+            </form>
+          )}
+        </div>
 
         {/* ── Top grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
@@ -61,8 +113,8 @@ export default function Footer() {
             <h4 className="text-white font-semibold text-sm mb-4">Company</h4>
             <ul className="space-y-2.5">
               {company.map((c) => (
-                <li key={c}>
-                  <a href="#" className="text-white/50 hover:text-white text-sm transition-colors">{c}</a>
+                <li key={c.label}>
+                  <Link to={c.href} className="text-white/50 hover:text-white text-sm transition-colors">{c.label}</Link>
                 </li>
               ))}
             </ul>

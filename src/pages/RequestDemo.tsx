@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   ArrowRight, CheckCircle2, Building2, Users, GraduationCap,
   Phone, Mail, MapPin, Zap, Target, BarChart3, Brain,
@@ -270,6 +271,7 @@ export default function RequestDemo() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const products = [
   { icon: Crosshair, title: "MyPlacement", desc: "AI-driven campus placement prep with coding, aptitude, core engineering, and company-specific mock tests.", tag: "For Engineering Students", href: "/placement" },
-  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation combining online + classroom learning, analytics, and expert faculty.", tag: "GATE Preparation", href: null },
+  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation combining online + classroom learning, analytics, and expert faculty.", tag: "GATE Preparation", href: "/smartgate" },
   { icon: School, title: "Institute Suite", desc: "Complete assessment and analytics platform for engineering colleges — continuous evaluation, accreditation data, and recruitment tools.", tag: "For Institutes", href: null },
   { icon: BarChart3, title: "NEAT Assessment", desc: "Conduct campus recruitment drives, coding tests, and cognitive assessments with your own device or lab.", tag: "For Recruiters", href: null },
   { icon: BookOpen, title: "Coaching Platform", desc: "Built for schools and coaching institutes — content for JEE, NEET, SSC, Banking, Railway exams.", tag: "For Coaching Centers", href: null },

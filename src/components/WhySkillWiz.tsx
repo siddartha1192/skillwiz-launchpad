@@ -42,7 +42,7 @@ export default function WhySkillWiz() {
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         {/* Single uniform dark overlay */}
-        <div className="absolute inset-0" style={{ background: "rgba(13,27,62,0.82)" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(13,27,62,0.70)" }} />
 
         {/* Progress bar */}
         <div className="absolute top-0 left-0 right-0 h-[3px] z-30">
@@ -61,57 +61,70 @@ export default function WhySkillWiz() {
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 z-20">
 
           {/* Section eyebrow */}
-          <p className="text-[10px] font-bold tracking-[3.5px] uppercase mb-2" style={{ color: "#FF7A1A" }}>Why SkillWiz</p>
+          <p className="text-xs font-bold tracking-[4px] uppercase mb-4" style={{ color: "#FF7A1A" }}>Why SkillWiz</p>
 
           {/* Feature block */}
           <div
             key={active}
             className="flex flex-col items-center text-center w-full"
             style={{
-              maxWidth: 780,
+              maxWidth: 860,
               animation: "featureIn 0.55s cubic-bezier(0.16,1,0.3,1) both",
             }}
           >
-            {/* Tag */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
-              style={{ background: `${f.color}18`, color: f.color, border: `1px solid ${f.color}30` }}>
-              {f.tag}
+            {/* Tag + Icon row */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{
+                  background: `${f.color}20`,
+                  border: `2px solid ${f.color}40`,
+                  boxShadow: `0 0 32px ${f.color}40`,
+                }}>
+                <f.icon size={30} style={{ color: f.color }} />
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
+                style={{ background: `${f.color}18`, color: f.color, border: `1px solid ${f.color}35` }}>
+                {f.tag}
+              </div>
             </div>
 
-            {/* Icon */}
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
-              style={{ background: `${f.color}18`, border: `2px solid ${f.color}30` }}>
-              <f.icon size={26} style={{ color: f.color }} />
-            </div>
-
-            {/* Title */}
-            <h3 className="font-black text-white leading-tight mb-3"
-              style={{ fontSize: "clamp(1.6rem,3vw,2.4rem)", letterSpacing: "-0.02em" }}>
+            {/* Title — big & impactful */}
+            <h3 className="font-black text-white leading-[1.0] mb-5"
+              style={{
+                fontSize: "clamp(3.2rem,7vw,5.6rem)",
+                letterSpacing: "-0.03em",
+                textShadow: "0 2px 40px rgba(0,0,0,0.5)",
+              }}>
               {f.title}
             </h3>
 
             {/* Desc */}
-            <p className="leading-relaxed mb-5"
-              style={{ fontSize: "clamp(0.9rem,1.1vw,1.05rem)", color: "rgba(255,255,255,0.6)", maxWidth: 580 }}>
+            <p className="leading-relaxed mb-6"
+              style={{ fontSize: "clamp(1rem,1.4vw,1.2rem)", color: "rgba(255,255,255,0.65)", maxWidth: 620 }}>
               {f.desc}
             </p>
 
             {/* Stat */}
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl"
-              style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${f.color}30` }}>
-              <span className="font-black text-2xl" style={{ color: f.color }}>{f.stat.value}</span>
-              <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.45)" }}>{f.stat.label}</span>
+            <div className="inline-flex items-center gap-4 px-7 py-3.5 rounded-2xl"
+              style={{
+                background: "rgba(0,0,0,0.3)",
+                border: `1.5px solid ${f.color}35`,
+                backdropFilter: "blur(10px)",
+              }}>
+              <span className="font-black text-3xl" style={{ color: f.color }}>{f.stat.value}</span>
+              <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>{f.stat.label}</span>
             </div>
           </div>
 
           {/* Progress dots */}
-          <div className="flex items-center gap-2 mt-8">
+          <div className="flex items-center gap-2.5 mt-7">
             {features.map((ft, i) => (
               <div key={i} className="rounded-full transition-all duration-300"
                 style={{
-                  width: active === i ? 20 : 6,
-                  height: 6,
+                  width: active === i ? 24 : 7,
+                  height: 7,
                   background: active === i ? ft.color : "rgba(255,255,255,0.2)",
+                  boxShadow: active === i ? `0 0 8px ${ft.color}` : "none",
                 }} />
             ))}
           </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   ArrowRight, CheckCircle2, ChevronDown, Users, GraduationCap, Building2,
   Brain, Target, Zap, Globe, Star, BookOpen, BarChart3, Layers, Shield,
@@ -472,6 +473,7 @@ export default function PlacementPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

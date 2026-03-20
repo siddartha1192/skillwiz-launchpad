@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function PrivacyPolicy() {
   return (
@@ -156,6 +157,7 @@ export default function PrivacyPolicy() {
           </a>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

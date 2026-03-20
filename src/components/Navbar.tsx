@@ -3,15 +3,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Crosshair, Brain, School, BarChart3, BookOpen, Bot } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Success Stories", id: "success-stories" },
-  { label: "Contact", id: "contact" },
+  { label: "Home", id: "home", href: null },
+  { label: "About", id: "about", href: "/about" },
+  { label: "CSM", id: "csm", href: "/csm" },
+  { label: "Success Stories", id: "success-stories", href: null },
+  { label: "Blog", id: "blog", href: "/blog" },
 ];
 
 const products = [
   { icon: Crosshair, title: "MyPlacement", desc: "AI-driven campus placement prep", id: "products", href: "/placement" },
-  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation", id: "products", href: null },
+  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation", id: "products", href: "/smartgate" },
   { icon: School, title: "Institute Suite", desc: "Assessment & analytics for colleges", id: "products", href: null },
   { icon: BarChart3, title: "NEAT Assessment", desc: "Campus recruitment & coding tests", id: "products", href: null },
   { icon: BookOpen, title: "Coaching Platform", desc: "JEE, NEET, SSC & more", id: "products", href: null },
@@ -153,15 +154,14 @@ export default function Navbar() {
           </div>
 
           {/* Other nav links */}
-          {navLinks.slice(1).map((l) => (
-            <button
-              key={l.label}
-              onClick={() => scrollTo(l.id)}
-              className="text-navy/65 hover:text-navy text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors hover:bg-navy/[0.05]"
-            >
-              {l.label}
-            </button>
-          ))}
+          {navLinks.slice(1).map((l) => {
+            const cls = "text-navy/65 hover:text-navy text-[13px] font-medium tracking-wide uppercase px-4 py-2 rounded-md transition-colors hover:bg-navy/[0.05]";
+            return l.href ? (
+              <Link key={l.label} to={l.href} className={cls}>{l.label}</Link>
+            ) : (
+              <button key={l.label} onClick={() => scrollTo(l.id)} className={cls}>{l.label}</button>
+            );
+          })}
         </div>
 
         {/* Desktop CTA */}
@@ -228,15 +228,14 @@ export default function Navbar() {
               )}
             </div>
 
-            {navLinks.slice(1).map((l) => (
-              <button
-                key={l.label}
-                onClick={() => scrollTo(l.id)}
-                className="text-navy/70 hover:text-navy text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-navy/[0.05] transition-colors"
-              >
-                {l.label}
-              </button>
-            ))}
+            {navLinks.slice(1).map((l) => {
+              const cls = "text-navy/70 hover:text-navy text-left py-2.5 px-3 text-sm font-medium rounded-md hover:bg-navy/[0.05] transition-colors";
+              return l.href ? (
+                <Link key={l.label} to={l.href} onClick={() => setMobileOpen(false)} className={cls}>{l.label}</Link>
+              ) : (
+                <button key={l.label} onClick={() => scrollTo(l.id)} className={cls}>{l.label}</button>
+              );
+            })}
 
             <div className="flex gap-3 pt-3 mt-2 border-t border-gray-100">
               <button className="text-navy/70 text-sm font-medium px-3 py-2">Login</button>

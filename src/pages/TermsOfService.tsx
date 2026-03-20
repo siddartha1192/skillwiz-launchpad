@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function TermsOfService() {
   return (
@@ -178,6 +179,7 @@ export default function TermsOfService() {
           </a>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

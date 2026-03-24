@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { Crosshair, TrendingUp, Trophy, Users, Smartphone, Building2 } from "lucide-react";
 
 const scrollImages = ["/scroll/web1.jpg", "/scroll/web2.jpg", "/scroll/web3.jpg", "/scroll/web4.jpg"];
 
 const features = [
-  { icon: Crosshair,  color: "#41b7d1", tag: "AI Intelligence",  title: "Personalized AI Learning Path", desc: "Our GPS algorithm maps every student's knowledge graph in real-time, identifies exact weak nodes, and plots the shortest route to their goal.", stat: { value: "3×",   label: "Faster skill improvement" } },
-  { icon: TrendingUp, color: "#3f3f99", tag: "Smart Assessment", title: "Continuous Assessment",          desc: "One-time tests show a snapshot. Our platform runs intelligent micro-assessments in the background — tracking momentum and adapting difficulty week by week.", stat: { value: "70%",  label: "Reduction in knowledge gaps" } },
-  { icon: Trophy,     color: "#41b7d1", tag: "Engagement",       title: "Gamified Experience",            desc: "Leaderboards, streaks, badges, and challenge modes turn studying into a sport. Students compete, celebrate wins and push each other forward.", stat: { value: "4.9★", label: "Average student rating" } },
-  { icon: Users,      color: "#3f3f99", tag: "Mentorship",       title: "Expert Mentors",                 desc: "Live sessions with industry professionals and college alumni. Get resume feedback, mock interviews, and career guidance from people who've done it.", stat: { value: "500+", label: "Mentor sessions monthly" } },
-  { icon: Smartphone, color: "#41b7d1", tag: "Accessibility",    title: "Learn Anywhere",                 desc: "Fully offline-capable mobile app. Download question sets, take timed tests without internet, and sync results automatically when back online.", stat: { value: "98%",  label: "Uptime & availability" } },
-  { icon: Building2,  color: "#3f3f99", tag: "Administration",   title: "Institute Analytics",            desc: "Real-time dashboards show administrators exactly where each batch stands — topic by topic, student by student. Act before placement season arrives.", stat: { value: "200+", label: "Institutes empowered" } },
+  { tag: "AI Intelligence",  title: "Personalized AI Learning Path", desc: "Our GPS algorithm maps every student's knowledge graph in real-time, identifies exact weak nodes, and plots the shortest route to their goal.", stat: { value: "3×",   label: "Faster skill improvement" } },
+  { tag: "Smart Assessment", title: "Continuous Assessment",          desc: "One-time tests show a snapshot. Our platform runs intelligent micro-assessments in the background — tracking momentum and adapting difficulty week by week.", stat: { value: "70%",  label: "Reduction in knowledge gaps" } },
+  { tag: "Engagement",       title: "Gamified Experience",            desc: "Leaderboards, streaks, badges, and challenge modes turn studying into a sport. Students compete, celebrate wins and push each other forward.", stat: { value: "4.9★", label: "Average student rating" } },
+  { tag: "Mentorship",       title: "Expert Mentors",                 desc: "Live sessions with industry professionals and college alumni. Get resume feedback, mock interviews, and career guidance from people who've done it.", stat: { value: "500+", label: "Mentor sessions monthly" } },
+  { tag: "Accessibility",    title: "Learn Anywhere",                 desc: "Fully offline-capable mobile app. Download question sets, take timed tests without internet, and sync results automatically when back online.", stat: { value: "98%",  label: "Uptime & availability" } },
+  { tag: "Administration",   title: "Institute Analytics",            desc: "Real-time dashboards show administrators exactly where each batch stands — topic by topic, student by student. Act before placement season arrives.", stat: { value: "200+", label: "Institutes empowered" } },
 ];
 
 export default function WhySkillWiz() {
@@ -32,11 +31,53 @@ export default function WhySkillWiz() {
   }, []);
 
   const f = features[active];
-  // Lighten colors for visibility on the dark gradient panel
-  const displayColor = f.color === "#3f3f99" ? "#9898d4" : "#7dd8eb";
 
   return (
-    <div id="about" ref={sectionRef} style={{ height: `calc(${features.length * 28}vh + 70vh)` }}>
+    <div id="about">
+
+      {/* ══ MOBILE: simple stacked cards ══ */}
+      <div className="md:hidden" style={{ background: "linear-gradient(180deg, #0d1b3e 0%, #0f2048 100%)" }}>
+        {/* Header */}
+        <div className="px-5 pt-10 pb-6 text-center">
+          <p className="text-xs font-bold tracking-[4px] uppercase mb-2" style={{ color: "rgba(255,255,255,0.55)" }}>Why SkillWiz</p>
+          <h2 className="text-2xl font-black text-white leading-tight">What Makes Us Different</h2>
+        </div>
+
+        {/* Feature cards */}
+        <div className="flex flex-col gap-0">
+          {features.map((ft, i) => {
+            const img = scrollImages[i % scrollImages.length];
+            return (
+              <div key={i} className="relative overflow-hidden mx-4 mb-4 rounded-2xl" style={{ minHeight: 260 }}>
+                {/* Background image */}
+                <img src={img} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
+                {/* Dark gradient overlay */}
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(10,20,60,0.10) 0%, rgba(10,20,60,0.55) 45%, rgba(10,20,60,0.92) 75%, rgba(10,20,60,0.97) 100%)" }} />
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col justify-end h-full p-5" style={{ minHeight: 260 }}>
+                  {/* Title */}
+                  <h3 className="text-lg font-black text-white leading-snug mb-2">{ft.title}</h3>
+
+                  {/* Desc */}
+                  <p className="text-[13px] leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.78)" }}>{ft.desc}</p>
+
+                  {/* Stat pill */}
+                  <div className="inline-flex items-center gap-3 self-start px-4 py-2 rounded-xl"
+                    style={{ background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.25)" }}>
+                    <span className="font-black text-xl leading-none" style={{ color: "white" }}>{ft.stat.value}</span>
+                    <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.75)" }}>{ft.stat.label}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="h-6" />
+      </div>
+
+      {/* ══ DESKTOP: sticky scroll ══ */}
+      <div ref={sectionRef} className="hidden md:block" style={{ height: `calc(${features.length * 28}vh + 70vh)` }}>
       <div className="sticky overflow-hidden" style={{ top: "15vh", height: "70vh" }}>
 
         {/* Progress bar */}
@@ -70,24 +111,21 @@ export default function WhySkillWiz() {
               animation: "panelGradient 10s ease infinite",
             }}
           >
-            {/* Feature-color radial glow */}
+            {/* Subtle white radial glow */}
             <div className="absolute inset-0 pointer-events-none"
-              style={{ background: `radial-gradient(ellipse at 20% 50%, ${displayColor}22 0%, transparent 60%)`, transition: "background 0.6s" }} />
+              style={{ background: "radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%)" }} />
 
             {/* Vertical scroll dots */}
             <div className="absolute right-5 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
-              {features.map((ft, i) => {
-                const dotColor = ft.color === "#3f3f99" ? "#9898d4" : "#7dd8eb";
-                return (
-                  <div key={i} className="rounded-full transition-all duration-300"
-                    style={{
-                      width: 6,
-                      height: active === i ? 26 : 6,
-                      background: active === i ? dotColor : "rgba(255,255,255,0.2)",
-                      boxShadow: active === i ? `0 0 8px ${dotColor}` : "none",
-                    }} />
-                );
-              })}
+              {features.map((_, i) => (
+                <div key={i} className="rounded-full transition-all duration-300"
+                  style={{
+                    width: 6,
+                    height: active === i ? 26 : 6,
+                    background: active === i ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.2)",
+                    boxShadow: active === i ? "0 0 8px rgba(255,255,255,0.5)" : "none",
+                  }} />
+              ))}
             </div>
 
             {/* Content — animates on change */}
@@ -97,51 +135,35 @@ export default function WhySkillWiz() {
               style={{ animation: "featureIn 0.5s cubic-bezier(0.16,1,0.3,1) both", maxWidth: 460 }}
             >
               {/* Eyebrow */}
-              <p className="text-sm font-bold tracking-[4px] uppercase mb-5" style={{ color: "#7dd8eb" }}>
+              <p className="text-sm font-bold tracking-[4px] uppercase mb-5" style={{ color: "rgba(255,255,255,0.50)" }}>
                 Why SkillWiz
               </p>
 
-              {/* Icon + tag */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
-                  style={{
-                    background: `${displayColor}25`,
-                    border: `2px solid ${displayColor}60`,
-                    boxShadow: `0 0 24px ${displayColor}30`,
-                  }}>
-                  <f.icon size={26} style={{ color: displayColor }} />
-                </div>
-                <span className="px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-widest"
-                  style={{ background: `${displayColor}25`, color: displayColor, border: `1.5px solid ${displayColor}70` }}>
-                  {f.tag}
-                </span>
-              </div>
-
               {/* Title */}
               <h3 className="font-black text-white leading-tight mb-5"
-                style={{ fontSize: "clamp(2.2rem, 4vw, 3.6rem)", letterSpacing: "-0.03em" }}>
+                style={{ fontSize: "clamp(2.6rem, 4.5vw, 4.2rem)", letterSpacing: "-0.04em" }}>
                 {f.title}
               </h3>
 
               {/* Description */}
-              <p className="leading-relaxed mb-7"
-                style={{ fontSize: "clamp(1rem, 1.3vw, 1.15rem)", color: "rgba(255,255,255,0.92)", maxWidth: 420 }}>
+              <p className="leading-relaxed mb-7 font-medium"
+                style={{ fontSize: "clamp(1.05rem, 1.4vw, 1.2rem)", color: "rgba(255,255,255,0.88)", maxWidth: 420 }}>
                 {f.desc}
               </p>
 
               {/* Stat */}
               <div className="inline-flex items-center gap-4 px-6 py-3 rounded-xl"
                 style={{
-                  background: `${displayColor}20`,
-                  border: `1.5px solid ${displayColor}60`,
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1.5px solid rgba(255,255,255,0.25)",
                 }}>
-                <span className="font-black text-3xl" style={{ color: displayColor }}>{f.stat.value}</span>
-                <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.90)" }}>{f.stat.label}</span>
+                <span className="font-black text-3xl" style={{ color: "white" }}>{f.stat.value}</span>
+                <span className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.75)" }}>{f.stat.label}</span>
               </div>
 
               {/* Step counter */}
               <div className="flex items-center gap-1.5 mt-8">
-                <span className="font-black text-xl" style={{ color: displayColor }}>{String(active + 1).padStart(2, "0")}</span>
+                <span className="font-black text-xl" style={{ color: "rgba(255,255,255,0.90)" }}>{String(active + 1).padStart(2, "0")}</span>
                 <span className="font-bold" style={{ color: "rgba(255,255,255,0.45)" }}>/</span>
                 <span className="font-bold" style={{ color: "rgba(255,255,255,0.45)" }}>{String(features.length).padStart(2, "0")}</span>
               </div>
@@ -167,6 +189,7 @@ export default function WhySkillWiz() {
           </div>
 
         </div>
+      </div>
       </div>
 
       <style>{`

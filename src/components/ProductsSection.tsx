@@ -2,13 +2,15 @@ import { Crosshair, Brain, School, BarChart3, BookOpen, Bot, ArrowRight } from "
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+const COLOR = "#3f3f99";
+
 const products = [
-  { icon: Crosshair, title: "MyPlacement", desc: "AI-driven campus placement prep with coding, aptitude, core engineering, and company-specific mock tests.", tag: "For Engineering Students", href: "/placement" },
-  { icon: Brain, title: "SmartGATE", desc: "Personalized GATE preparation combining online + classroom learning, analytics, and expert faculty.", tag: "GATE Preparation", href: "/smartgate" },
-  { icon: School, title: "Institute Suite", desc: "Complete assessment and analytics platform for engineering colleges — continuous evaluation, accreditation data, and recruitment tools.", tag: "For Institutes", href: null },
-  { icon: BarChart3, title: "NEAT Assessment", desc: "Conduct campus recruitment drives, coding tests, and cognitive assessments with your own device or lab.", tag: "For Recruiters", href: null },
-  { icon: BookOpen, title: "Coaching Platform", desc: "Built for schools and coaching institutes — content for JEE, NEET, SSC, Banking, Railway exams.", tag: "For Coaching Centers", href: null },
-  { icon: Bot, title: "AI GPS Learning", desc: "Our intelligent algorithm detects gaps, creates a personalized study plan, and navigates the shortest path to your success.", tag: "AI-Powered", href: null },
+  { icon: Crosshair, title: "MyPlacement",       desc: "AI-driven campus placement prep with coding, aptitude, core engineering, and company-specific mock tests.",                                                              tag: "For Engineering Students", href: "/placement" },
+  { icon: Brain,     title: "SmartGATE",          desc: "Personalized GATE preparation combining online + classroom learning, analytics, and expert faculty.",                                                                    tag: "GATE Preparation",         href: "/smartgate" },
+  { icon: School,    title: "Institute Suite",     desc: "Complete assessment and analytics platform for engineering colleges — continuous evaluation, accreditation data, and recruitment tools.",                                tag: "For Institutes",            href: null },
+  { icon: BarChart3, title: "NEAT Assessment",     desc: "Conduct campus recruitment drives, coding tests, and cognitive assessments with your own device or lab.",                                                               tag: "For Recruiters",            href: null },
+  { icon: BookOpen,  title: "Coaching Platform",   desc: "Built for schools and coaching institutes — content for JEE, NEET, SSC, Banking, Railway exams.",                                                                      tag: "For Coaching Centers",      href: null },
+  { icon: Bot,       title: "AI GPS Learning",     desc: "Our intelligent algorithm detects gaps, creates a personalized study plan, and navigates the shortest path to your success.",                                          tag: "AI-Powered",                href: null },
 ];
 
 export default function ProductsSection() {
@@ -22,20 +24,46 @@ export default function ProductsSection() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((p, i) => {
+            const color = COLOR;
             const inner = (
               <>
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-                  <p.icon className="text-accent" size={24} />
+                {/* Icon box */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ background: `${color}12`, border: `1.5px solid ${color}30` }}
+                >
+                  <p.icon size={22} style={{ color }} />
                 </div>
-                <span className="text-xs font-semibold text-accent tracking-wide uppercase">{p.tag}</span>
-                <h3 className="text-xl font-bold text-foreground mt-1 mb-3">{p.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-5">{p.desc}</p>
-                <span className="text-accent font-semibold text-sm flex items-center gap-1.5 group">
+
+                {/* Tag */}
+                <span
+                  className="text-[11px] font-bold tracking-widest uppercase"
+                  style={{ color }}
+                >
+                  {p.tag}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold mt-1.5 mb-3" style={{ color: "#0d1b3e" }}>
+                  {p.title}
+                </h3>
+
+                {/* Description — darker than muted for readability */}
+                <p className="text-sm leading-relaxed mb-5" style={{ color: "#4a5568" }}>
+                  {p.desc}
+                </p>
+
+                {/* CTA link */}
+                <span
+                  className="font-semibold text-sm flex items-center gap-1.5 group"
+                  style={{ color }}
+                >
                   {p.href ? "Explore Product" : "Learn More"}
-                  <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                 </span>
               </>
             );
+
             const cls = `bg-card rounded-2xl p-7 card-hover shadow-md ${isVisible ? "animate-slide-up" : "opacity-0"}`;
             return p.href ? (
               <Link key={i} to={p.href} className={cls} style={{ animationDelay: `${i * 80}ms`, display: "block" }}>

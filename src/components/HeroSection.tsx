@@ -13,7 +13,7 @@ const TICKER = [
   "Expert Mentorship",
 ];
 
-const TICKER_COLORS = ["#1EC8E8", "#5353C8", "#FF7A1A"];
+const TICKER_COLORS = ["#41b7d1", "#3f3f99", "#41b7d1"];
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -37,8 +37,10 @@ export default function HeroSection() {
           className="w-full h-full object-cover object-center"
         />
         {/* Dark overlay so text stays readable */}
+        {/* Mobile: full dark overlay; Desktop: fades to transparent on the right */}
+        <div className="absolute inset-0 md:hidden" style={{ background: "rgba(13,27,62,0.82)" }} />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{
             background:
               "linear-gradient(to right, rgba(13,27,62,0.88) 25%, rgba(13,27,62,0.75) 35%, rgba(13,27,62,0.30) 55%, rgba(13,27,62,0.05) 88%)",
@@ -78,66 +80,84 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 mb-10 animate-slide-in-left" style={{ animationDelay: "0.3s" }}>
+              {/* Mobile: solid sky blue */}
               <Link
                 to="/placement"
-                className="group relative flex items-center gap-2.5 font-bold px-8 py-4 rounded-2xl text-white overflow-hidden transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
+                className="md:hidden group flex items-center gap-2.5 font-bold px-8 py-4 rounded-2xl text-white transition-all duration-300 active:scale-95"
                 style={{
-                  background: "linear-gradient(135deg, #FF7A1A 0%, #FF9847 100%)",
-                  boxShadow: "0 8px 28px rgba(255,122,26,0.45)",
+                  background: "linear-gradient(135deg, #41b7d1 0%, #2ea8c4 100%)",
+                  boxShadow: "0 6px 20px rgba(65,183,209,0.45)",
+                }}
+              >
+                Explore Products
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
+
+              {/* Desktop: frosted glass */}
+              <Link
+                to="/placement"
+                className="hidden md:group md:relative md:flex items-center gap-2.5 font-bold px-8 py-4 rounded-2xl text-white overflow-hidden transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(125,216,235,0.18) 100%)",
+                  border: "1.5px solid rgba(125,216,235,0.45)",
+                  boxShadow: "0 8px 28px rgba(125,216,235,0.15)",
+                  backdropFilter: "blur(10px)",
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 14px 40px rgba(255,122,26,0.65)";
+                  (e.currentTarget as HTMLElement).style.background = "linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(125,216,235,0.26) 100%)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 14px 40px rgba(125,216,235,0.28)";
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 28px rgba(255,122,26,0.45)";
+                  (e.currentTarget as HTMLElement).style.background = "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(125,216,235,0.18) 100%)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 28px rgba(125,216,235,0.15)";
                 }}
               >
                 <span
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    background:
-                      "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%)",
+                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%)",
                   }}
                 />
                 Explore Products
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
 
-              <button
+              <Link
+                to="/demo"
                 className="group flex items-center gap-3 font-semibold px-6 py-4 rounded-2xl border-2 transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
                 style={{
                   color: "white",
-                  borderColor: "rgba(255,255,255,0.3)",
-                  background: "rgba(255,255,255,0.1)",
+                  borderColor: "rgba(255,255,255,0.7)",
+                  background: "rgba(255,255,255,0.15)",
                   backdropFilter: "blur(8px)",
                 }}
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(30,200,232,0.6)";
-                  el.style.color = "#7ee8f8";
+                  el.style.borderColor = "#41b7d1";
+                  el.style.background = "rgba(65,183,209,0.15)";
                 }}
                 onMouseLeave={e => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(255,255,255,0.3)";
-                  el.style.color = "white";
+                  el.style.borderColor = "rgba(255,255,255,0.7)";
+                  el.style.background = "rgba(255,255,255,0.15)";
                 }}
               >
                 <span
                   className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "rgba(255,122,26,0.2)", border: "1px solid rgba(255,122,26,0.35)" }}
+                  style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.5)" }}
                 >
-                  <Play size={13} fill="#FF7A1A" color="#FF7A1A" className="ml-0.5" />
+                  <Play size={13} fill="white" color="white" className="ml-0.5" />
                 </span>
                 Watch Demo
-              </button>
+              </Link>
             </div>
 
             {/* Trust badges */}
             <div className="flex flex-wrap gap-6 animate-slide-in-left" style={{ animationDelay: "0.45s" }}>
               {[
-                { Icon: Users,  label: "50,000+ Students", color: "#1EC8E8" },
-                { Icon: Trophy, label: "200+ Institutes",  color: "#a78bfa" },
-                { Icon: Zap,    label: "AI-Powered",       color: "#FF7A1A" },
+                { Icon: Users,  label: "50,000+ Students", color: "#41b7d1" },
+                { Icon: Trophy, label: "200+ Institutes",  color: "#3f3f99" },
+                { Icon: Zap,    label: "AI-Powered",       color: "#41b7d1" },
               ].map(({ Icon, label, color }) => (
                 <div key={label} className="flex items-center gap-2">
                   <Icon size={14} style={{ color }} />
@@ -252,7 +272,7 @@ export default function HeroSection() {
         >
           <div
             className="w-1 h-2 rounded-full"
-            style={{ background: "#1EC8E8", animation: "scrollDot 2s ease-in-out infinite" }}
+            style={{ background: "#41b7d1", animation: "scrollDot 2s ease-in-out infinite" }}
           />
         </div>
       </div>

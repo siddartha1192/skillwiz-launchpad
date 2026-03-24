@@ -7,6 +7,9 @@ import {
   ThumbsUp, Share2, Bookmark, ChevronRight, Send,
 } from "lucide-react";
 
+const INDIGO = "#3f3f99";
+const CYAN   = "#41b7d1";
+
 /* ─────────────────────────────── BLOG DATA ─────────────────────────────── */
 export const blogPosts: Record<string, {
   id: string; category: string; title: string; subtitle: string;
@@ -187,10 +190,10 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center" style={{ background: "#f0f9ff" }}>
+      <div className="min-h-screen flex flex-col items-center justify-center" style={{ background: "#f0f0ff" }}>
         <Navbar />
         <p className="text-2xl font-bold mt-32" style={{ color: "#0d1b3e" }}>Post not found.</p>
-        <Link to="/blog" className="mt-6 text-sm font-semibold" style={{ color: "#1EC8E8" }}>← Back to Blog</Link>
+        <Link to="/blog" className="mt-6 text-sm font-semibold" style={{ color: CYAN }}>← Back to Blog</Link>
         <Footer />
       </div>
     );
@@ -215,8 +218,11 @@ export default function BlogPost() {
     setTimeout(() => setSubmitted(false), 3000);
   };
 
+  const inputCls = "w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all border-2";
+  const inputStyle = { borderColor: "rgba(13,27,62,0.12)", color: "#0d1b3e" };
+
   return (
-    <div className="min-h-screen" style={{ background: "linear-gradient(135deg,#f8fcff 0%,#ffffff 60%,#fff9f5 100%)" }}>
+    <div className="min-h-screen" style={{ background: "linear-gradient(135deg,#f0f0ff 0%,#ffffff 60%,#f5f5ff 100%)" }}>
       <Navbar />
 
       {/* ── Hero ── */}
@@ -226,19 +232,19 @@ export default function BlogPost() {
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 pt-36 pb-16">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-semibold mb-6 transition-colors hover:opacity-80" style={{ color: "#1EC8E8" }}>
+          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-semibold mb-6 transition-colors hover:opacity-80" style={{ color: "#7dd8eb" }}>
             <ArrowLeft size={15} /> Back to Blog
           </Link>
 
           <div className="flex items-center gap-2 mb-4">
-            <Tag size={12} style={{ color: "#FF7A1A" }} />
-            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#FF7A1A" }}>{post.category}</span>
+            <Tag size={12} style={{ color: "#7dd8eb" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#7dd8eb" }}>{post.category}</span>
           </div>
 
           <h1 className="font-black text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem,4vw,3rem)", letterSpacing: "-0.02em" }}>
             {post.title}
           </h1>
-          <p className="text-white/60 text-base mb-8 max-w-2xl">{post.subtitle}</p>
+          <p className="text-white/65 text-base mb-8 max-w-2xl">{post.subtitle}</p>
 
           <div className="flex flex-wrap items-center gap-5 text-sm text-white/50">
             <div className="flex items-center gap-2">
@@ -263,7 +269,7 @@ export default function BlogPost() {
           <div className="flex flex-wrap gap-2 mb-10">
             {post.tags.map(t => (
               <span key={t} className="px-3 py-1.5 rounded-full text-xs font-semibold"
-                style={{ background: "rgba(13,27,62,0.06)", color: "rgba(13,27,62,0.55)" }}>
+                style={{ background: `${INDIGO}0d`, color: INDIGO, border: `1px solid ${INDIGO}22` }}>
                 #{t}
               </span>
             ))}
@@ -277,14 +283,14 @@ export default function BlogPost() {
                 <h2 key={i} className="font-black text-2xl mt-10 mb-2" style={{ color: "#0d1b3e", letterSpacing: "-0.01em" }}>{sec.content}</h2>
               );
               if (sec.type === "h3") return (
-                <h3 key={i} className="font-bold text-lg mt-6 mb-1" style={{ color: "#0d1b3e" }}>{sec.content}</h3>
+                <h3 key={i} className="font-bold text-lg mt-6 mb-1" style={{ color: INDIGO }}>{sec.content}</h3>
               );
               if (sec.type === "p") return <p key={i} className="text-[15px]">{sec.content}</p>;
               if (sec.type === "ul") return (
                 <ul key={i} className="space-y-2 ml-2">
                   {sec.items?.map((item, j) => (
                     <li key={j} className="flex items-start gap-3 text-[15px]">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#1EC8E8" }} />
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: INDIGO }} />
                       {item}
                     </li>
                   ))}
@@ -294,7 +300,7 @@ export default function BlogPost() {
                 <ol key={i} className="space-y-2 ml-2">
                   {sec.items?.map((item, j) => (
                     <li key={j} className="flex items-start gap-3 text-[15px]">
-                      <span className="font-black shrink-0" style={{ color: "#FF7A1A", minWidth: 20 }}>{j + 1}.</span>
+                      <span className="font-black shrink-0" style={{ color: INDIGO, minWidth: 20 }}>{j + 1}.</span>
                       {item}
                     </li>
                   ))}
@@ -302,24 +308,24 @@ export default function BlogPost() {
               );
               if (sec.type === "tip") return (
                 <div key={i} className="rounded-2xl px-6 py-4"
-                  style={{ background: "rgba(30,200,232,0.07)", border: "1.5px solid rgba(30,200,232,0.2)" }}>
-                  <p className="text-sm font-semibold" style={{ color: "#0d97ae" }}>💡 {sec.content}</p>
+                  style={{ background: `${CYAN}0d`, border: `1.5px solid ${CYAN}30` }}>
+                  <p className="text-sm font-semibold" style={{ color: "#2a8ca8" }}>💡 {sec.content}</p>
                 </div>
               );
               if (sec.type === "qa") return (
                 <div key={i} className="space-y-4">
                   {sec.pairs?.map((pair, j) => (
                     <div key={j} className="rounded-2xl overflow-hidden"
-                      style={{ border: "1px solid rgba(13,27,62,0.08)" }}>
-                      <div className="px-5 py-3" style={{ background: "rgba(13,27,62,0.04)" }}>
+                      style={{ border: `1px solid ${INDIGO}18` }}>
+                      <div className="px-5 py-3" style={{ background: `${INDIGO}07` }}>
                         <p className="text-sm font-semibold" style={{ color: "#0d1b3e" }}>
-                          <span className="font-black mr-2" style={{ color: "#FF7A1A" }}>Q{j + 1}.</span>
+                          <span className="font-black mr-2" style={{ color: INDIGO }}>Q{j + 1}.</span>
                           {pair.q}
                         </p>
                       </div>
                       <div className="px-5 py-3 bg-white">
                         <p className="text-sm" style={{ color: "rgba(13,27,62,0.65)" }}>
-                          <span className="font-bold mr-1" style={{ color: "#1EC8E8" }}>Ans:</span>
+                          <span className="font-bold mr-1" style={{ color: CYAN }}>Ans:</span>
                           {pair.a}
                         </p>
                       </div>
@@ -333,12 +339,12 @@ export default function BlogPost() {
 
           {/* Share strip */}
           <div className="mt-12 flex flex-wrap items-center justify-between gap-4 py-6 px-6 rounded-2xl"
-            style={{ background: "rgba(13,27,62,0.04)", border: "1px solid rgba(13,27,62,0.07)" }}>
+            style={{ background: "rgba(13,27,62,0.03)", border: "1px solid rgba(13,27,62,0.07)" }}>
             <p className="text-sm font-bold" style={{ color: "#0d1b3e" }}>Found this helpful? Share it!</p>
             <div className="flex items-center gap-3">
               {[
-                { icon: Share2, label: "Share", color: "#1EC8E8" },
-                { icon: Bookmark, label: "Save", color: "#FF7A1A" },
+                { icon: Share2,   label: "Share", color: CYAN   },
+                { icon: Bookmark, label: "Save",  color: INDIGO },
               ].map(({ icon: Icon, label, color }) => (
                 <button key={label}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.04]"
@@ -352,7 +358,7 @@ export default function BlogPost() {
           {/* ── COMMENTS ── */}
           <div className="mt-14" id="comments">
             <h2 className="font-black text-xl mb-8 flex items-center gap-3" style={{ color: "#0d1b3e" }}>
-              <MessageSquare size={20} style={{ color: "#1EC8E8" }} />
+              <MessageSquare size={20} style={{ color: INDIGO }} />
               {comments.length} Comments
             </h2>
 
@@ -361,7 +367,7 @@ export default function BlogPost() {
               {comments.map(c => (
                 <div key={c.id} className="flex gap-4">
                   <div className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center font-black text-sm text-white"
-                    style={{ background: "linear-gradient(135deg,#1EC8E8,#0d9eb8)" }}>
+                    style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)` }}>
                     {c.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1 rounded-2xl p-5 bg-white"
@@ -374,8 +380,8 @@ export default function BlogPost() {
                       <button onClick={() => handleLike(c.id)}
                         className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all duration-200"
                         style={{
-                          background: likedIds.has(c.id) ? "rgba(30,200,232,0.12)" : "rgba(13,27,62,0.04)",
-                          color: likedIds.has(c.id) ? "#1EC8E8" : "rgba(13,27,62,0.4)",
+                          background: likedIds.has(c.id) ? `${INDIGO}15` : "rgba(13,27,62,0.04)",
+                          color: likedIds.has(c.id) ? INDIGO : "rgba(13,27,62,0.4)",
                         }}>
                         <ThumbsUp size={12} /> {c.likes}
                       </button>
@@ -388,13 +394,13 @@ export default function BlogPost() {
 
             {/* Comment form */}
             <div className="rounded-3xl p-7 md:p-8"
-              style={{ background: "white", border: "1px solid rgba(13,27,62,0.08)", boxShadow: "0 8px 32px rgba(13,27,62,0.07)" }}>
+              style={{ background: "white", border: `1px solid ${INDIGO}12`, boxShadow: "0 8px 32px rgba(13,27,62,0.07)" }}>
               <h3 className="font-black text-lg mb-1" style={{ color: "#0d1b3e" }}>Leave a Comment</h3>
               <p className="text-sm mb-6" style={{ color: "rgba(13,27,62,0.4)" }}>Your email address will not be published.</p>
 
               {submitted && (
-                <div className="mb-5 rounded-xl px-5 py-3" style={{ background: "rgba(30,200,232,0.08)", border: "1.5px solid rgba(30,200,232,0.2)" }}>
-                  <p className="text-sm font-semibold" style={{ color: "#0d97ae" }}>Thank you! Your comment has been posted.</p>
+                <div className="mb-5 rounded-xl px-5 py-3" style={{ background: `${CYAN}0d`, border: `1.5px solid ${CYAN}30` }}>
+                  <p className="text-sm font-semibold" style={{ color: "#2a8ca8" }}>Thank you! Your comment has been posted.</p>
                 </div>
               )}
 
@@ -404,27 +410,24 @@ export default function BlogPost() {
                     <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(13,27,62,0.45)" }}>Name *</label>
                     <input required type="text" placeholder="Arjun Sharma" value={form.name}
                       onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all border-2 focus:border-[#1EC8E8] focus:shadow-[0_0_0_4px_rgba(30,200,232,0.1)]"
-                      style={{ borderColor: "rgba(13,27,62,0.12)", color: "#0d1b3e" }} />
+                      className={inputCls} style={inputStyle} />
                   </div>
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(13,27,62,0.45)" }}>Email (optional)</label>
                     <input type="email" placeholder="you@example.com" value={form.email}
                       onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all border-2 focus:border-[#1EC8E8] focus:shadow-[0_0_0_4px_rgba(30,200,232,0.1)]"
-                      style={{ borderColor: "rgba(13,27,62,0.12)", color: "#0d1b3e" }} />
+                      className={inputCls} style={inputStyle} />
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "rgba(13,27,62,0.45)" }}>Comment *</label>
                   <textarea required rows={4} placeholder="Share your experience or ask a question…" value={form.text}
                     onChange={e => setForm(f => ({ ...f, text: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl text-sm font-medium outline-none transition-all border-2 resize-none focus:border-[#1EC8E8] focus:shadow-[0_0_0_4px_rgba(30,200,232,0.1)]"
-                    style={{ borderColor: "rgba(13,27,62,0.12)", color: "#0d1b3e" }} />
+                    className={inputCls + " resize-none w-full"} style={inputStyle} />
                 </div>
                 <button type="submit"
                   className="flex items-center gap-2.5 font-bold px-8 py-3.5 rounded-2xl text-white transition-all duration-300 hover:scale-[1.03]"
-                  style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 8px 28px rgba(255,122,26,0.35)" }}>
+                  style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 8px 28px ${INDIGO}40` }}>
                   Post Comment <Send size={15} />
                 </button>
               </form>
@@ -439,20 +442,20 @@ export default function BlogPost() {
           <div className="rounded-2xl p-6 bg-white" style={{ border: "1px solid rgba(13,27,62,0.07)", boxShadow: "0 8px 28px rgba(13,27,62,0.07)" }}>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-white"
-                style={{ background: "linear-gradient(135deg,#0d1b3e,#1a2f60)" }}>A</div>
+                style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)` }}>A</div>
               <div>
                 <p className="font-bold text-sm" style={{ color: "#0d1b3e" }}>{post.author}</p>
                 <p className="text-xs" style={{ color: "rgba(13,27,62,0.45)" }}>{post.authorRole}</p>
               </div>
             </div>
-            <p className="text-xs leading-relaxed" style={{ color: "rgba(13,27,62,0.55)" }}>
+            <p className="text-xs leading-relaxed" style={{ color: "rgba(13,27,62,0.58)" }}>
               The SkillWiz team collects first-hand placement data from students who have appeared in recruitment drives to bring you the most accurate and useful guides.
             </p>
           </div>
 
           {/* Related posts */}
           <div className="rounded-2xl p-6 bg-white" style={{ border: "1px solid rgba(13,27,62,0.07)", boxShadow: "0 8px 28px rgba(13,27,62,0.06)" }}>
-            <p className="text-xs font-bold tracking-[3px] uppercase mb-4" style={{ color: "rgba(13,27,62,0.4)" }}>Related Articles</p>
+            <p className="text-xs font-bold tracking-[3px] uppercase mb-4" style={{ color: INDIGO }}>Related Articles</p>
             <div className="space-y-4">
               {relatedPosts.map((r, i) => (
                 <Link key={i} to="/blog"
@@ -460,11 +463,16 @@ export default function BlogPost() {
                   <img src={r.image} alt={r.title}
                     className="w-16 h-14 rounded-xl object-cover shrink-0" />
                   <div className="min-w-0">
-                    <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: "#FF7A1A" }}>{r.category}</span>
-                    <p className="text-xs font-semibold leading-snug mt-0.5 group-hover:text-[#1EC8E8] transition-colors line-clamp-2" style={{ color: "#0d1b3e" }}>{r.title}</p>
+                    <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: INDIGO }}>{r.category}</span>
+                    <p className="text-xs font-semibold leading-snug mt-0.5 line-clamp-2 transition-colors"
+                      style={{ color: "#0d1b3e" }}
+                      onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = CYAN}
+                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#0d1b3e"}>
+                      {r.title}
+                    </p>
                     <p className="text-[10px] mt-1" style={{ color: "rgba(13,27,62,0.35)" }}>{r.date}</p>
                   </div>
-                  <ChevronRight size={14} className="shrink-0 mt-3 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#1EC8E8" }} />
+                  <ChevronRight size={14} className="shrink-0 mt-3 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: INDIGO }} />
                 </Link>
               ))}
             </div>
@@ -472,12 +480,12 @@ export default function BlogPost() {
 
           {/* CTA */}
           <div className="rounded-2xl p-6 text-center"
-            style={{ background: "linear-gradient(135deg,#fff7f0,#fff0e8)", border: "1.5px solid rgba(255,122,26,0.2)" }}>
+            style={{ background: "linear-gradient(135deg,#eef0ff,#e8e8f8)", border: `1.5px solid ${INDIGO}22` }}>
             <p className="text-sm font-black mb-2" style={{ color: "#0d1b3e" }}>Ready for placement?</p>
-            <p className="text-xs mb-4" style={{ color: "rgba(13,27,62,0.5)" }}>Take a mock test and know where you stand before the drive.</p>
+            <p className="text-xs mb-4" style={{ color: "rgba(13,27,62,0.55)" }}>Take a mock test and know where you stand before the drive.</p>
             <Link to="/demo"
               className="inline-flex items-center gap-2 font-bold px-5 py-2.5 rounded-xl text-white text-sm transition-all duration-300 hover:scale-[1.04]"
-              style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 6px 20px rgba(255,122,26,0.35)" }}>
+              style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 6px 20px ${INDIGO}35` }}>
               Take a Test <ArrowLeft size={13} className="rotate-180" />
             </Link>
           </div>

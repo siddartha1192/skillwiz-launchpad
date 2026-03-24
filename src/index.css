@@ -24,7 +24,7 @@
     --muted: 230 33% 97%;
     --muted-foreground: 220 9% 43%;
 
-    --accent: 18 100% 58%;
+    --accent: 240 42% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,7 +32,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 18 100% 58%;
+    --ring: 240 42% 42%;
 
     --radius: 0.5rem;
 
@@ -76,7 +76,8 @@
 
 @layer components {
   .section-label {
-    @apply text-xs font-semibold tracking-[3px] uppercase text-accent mb-3;
+    @apply text-xs font-semibold tracking-[3px] uppercase mb-3;
+    color: #3f3f99;
   }
 
   .section-title {
@@ -217,7 +218,7 @@
 .hero-gradient-text {
   display: inline-block;
   padding-bottom: 0.12em;
-  background: linear-gradient(135deg, #1EC8E8 0%, #a5f3fc 50%, #1EC8E8 100%);
+  background: linear-gradient(135deg, #41b7d1 0%, #7dd8ec 50%, #41b7d1 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -226,7 +227,7 @@
 }
 
 .hero-orange-text {
-  background: linear-gradient(135deg, #FF7A1A 0%, #FFAA55 45%, #FF7A1A 90%);
+  background: linear-gradient(135deg, #7b7bd4 0%, #a8a8e8 45%, #7b7bd4 90%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

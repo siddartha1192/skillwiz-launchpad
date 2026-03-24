@@ -6,7 +6,6 @@ const navLinks = [
   { label: "Home", id: "home", href: null },
   { label: "About", id: "about", href: "/about" },
   { label: "CSM", id: "csm", href: "/csm" },
-  { label: "Success Stories", id: "success-stories", href: null },
   { label: "Blog", id: "blog", href: "/blog" },
 ];
 
@@ -122,7 +121,7 @@ export default function Navbar() {
             >
               <div className="w-[420px] bg-white rounded-xl shadow-[0_16px_48px_rgba(0,0,0,0.13)] border border-gray-100 overflow-hidden">
                 <div className="px-5 pt-4 pb-2">
-                  <p className="text-[11px] font-semibold tracking-[2px] uppercase text-accent">Our Products</p>
+                  <p className="text-[11px] font-semibold tracking-[2px] uppercase" style={{ color: "#3f3f99" }}>Our Products</p>
                 </div>
                 <div className="px-2 pb-3 grid grid-cols-1 gap-0.5">
                   {products.map((p) => {

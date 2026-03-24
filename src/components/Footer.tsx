@@ -31,7 +31,7 @@ export default function Footer() {
             <p className="text-white/40 text-sm mt-0.5">Get updates on new features, placements &amp; tips.</p>
           </div>
           {subscribed ? (
-            <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#1EC8E8" }}>
+            <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#41b7d1" }}>
               <CheckCircle2 size={18} /> Thanks for subscribing!
             </div>
           ) : (
@@ -48,12 +48,12 @@ export default function Footer() {
                   border: "1.5px solid rgba(255,255,255,0.12)",
                   color: "white",
                 }}
-                onFocus={e => { (e.target as HTMLElement).style.borderColor = "#1EC8E8"; }}
+                onFocus={e => { (e.target as HTMLElement).style.borderColor = "#41b7d1"; }}
                 onBlur={e => { (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
               />
               <button type="submit"
                 className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:scale-[1.04] shrink-0"
-                style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 6px 20px rgba(255,122,26,0.4)" }}>
+                style={{ background: "linear-gradient(135deg,#3f3f99,#5252b8)", boxShadow: "0 6px 20px rgba(63,63,153,0.4)" }}>
                 Subscribe <ArrowRight size={14} />
               </button>
             </form>
@@ -77,7 +77,7 @@ export default function Footer() {
             </p>
             <p
               className="text-sm font-semibold mb-5"
-              style={{ color: "#FF7A1A" }}
+              style={{ color: "#41b7d1" }}
             >
               Empowering Skills, Shaping Futures.
             </p>
@@ -127,8 +127,8 @@ export default function Footer() {
 
               <li className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: "rgba(255,122,26,0.12)" }}>
-                  <Phone size={14} style={{ color: "#FF7A1A" }} />
+                  style={{ background: "rgba(63,63,153,0.12)" }}>
+                  <Phone size={14} style={{ color: "#3f3f99" }} />
                 </span>
                 <div>
                   <div className="text-white/30 text-[10px] uppercase tracking-widest mb-0.5">Phone</div>
@@ -140,8 +140,8 @@ export default function Footer() {
 
               <li className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: "rgba(30,200,232,0.1)" }}>
-                  <Mail size={14} style={{ color: "#1EC8E8" }} />
+                  style={{ background: "rgba(65,183,209,0.12)" }}>
+                  <Mail size={14} style={{ color: "#41b7d1" }} />
                 </span>
                 <div>
                   <div className="text-white/30 text-[10px] uppercase tracking-widest mb-0.5">Email</div>
@@ -153,8 +153,8 @@ export default function Footer() {
 
               <li className="flex items-start gap-3">
                 <span className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                  style={{ background: "rgba(83,83,200,0.12)" }}>
-                  <MapPin size={14} style={{ color: "#a78bfa" }} />
+                  style={{ background: "rgba(63,63,153,0.12)" }}>
+                  <MapPin size={14} style={{ color: "#3f3f99" }} />
                 </span>
                 <div>
                   <div className="text-white/30 text-[10px] uppercase tracking-widest mb-0.5">Address</div>

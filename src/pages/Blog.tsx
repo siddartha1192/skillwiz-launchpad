@@ -4,6 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Clock, Tag, Search } from "lucide-react";
 
+const INDIGO       = "#3f3f99";
+const CYAN         = "#41b7d1";
+const CYAN_LIGHT   = "#7dd8eb";
+
 const categories = ["All", "GATE Prep", "Placement", "Career", "AI & Tech", "Student Stories"];
 
 const posts = [
@@ -127,11 +131,11 @@ const posts = [
 ];
 
 const categoryColors: Record<string, string> = {
-  "GATE Prep":      "#1EC8E8",
-  "Placement":      "#FF7A1A",
-  "Career":         "#a78bfa",
-  "AI & Tech":      "#1EC8E8",
-  "Student Stories":"#FF7A1A",
+  "GATE Prep":       CYAN,
+  "Placement":       INDIGO,
+  "Career":          INDIGO,
+  "AI & Tech":       CYAN,
+  "Student Stories": INDIGO,
 };
 
 export default function Blog() {
@@ -149,25 +153,25 @@ export default function Blog() {
   const showFeatured = (activeCategory === "All" && search === "") && featured;
 
   return (
-    <div className="min-h-screen" style={{ background: "linear-gradient(135deg,#f0f9ff 0%,#ffffff 50%,#fff7f0 100%)" }}>
+    <div className="min-h-screen" style={{ background: "linear-gradient(135deg,#f0f0ff 0%,#ffffff 50%,#f5f5ff 100%)" }}>
       <Navbar />
 
       {/* ── Hero ── */}
       <div className="relative overflow-hidden py-24 px-4 text-center"
         style={{ background: "linear-gradient(135deg,#0d1b3e 0%,#111d45 60%,#0f1f3d 100%)" }}>
         <div className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle, rgba(30,200,232,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+          style={{ backgroundImage: `radial-gradient(circle, ${CYAN}10 1px, transparent 1px)`, backgroundSize: "28px 28px" }} />
         <div className="absolute -right-20 top-0 w-72 h-72 rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle,rgba(255,122,26,0.12) 0%,transparent 70%)" }} />
+          style={{ background: `radial-gradient(circle,${INDIGO}20 0%,transparent 70%)` }} />
         <div className="absolute -left-10 bottom-0 w-60 h-60 rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle,rgba(30,200,232,0.1) 0%,transparent 70%)" }} />
+          style={{ background: `radial-gradient(circle,${CYAN}18 0%,transparent 70%)` }} />
 
         <div className="relative z-10 max-w-3xl mx-auto">
-          <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: "#FF7A1A" }}>SkillWiz Blog</p>
+          <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: CYAN_LIGHT }}>SkillWiz Blog</p>
           <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight" style={{ letterSpacing: "-0.02em" }}>
-            Insights for <span style={{ color: "#1EC8E8" }}>Learners & Educators</span>
+            Insights for <span style={{ color: CYAN_LIGHT }}>Learners & Educators</span>
           </h1>
-          <p className="text-white/50 text-base mb-8 max-w-xl mx-auto">
+          <p className="text-white/55 text-base mb-8 max-w-xl mx-auto">
             Tips, stories, strategies and deep-dives on GATE prep, campus placement, AI learning, and career growth.
           </p>
 
@@ -182,7 +186,7 @@ export default function Blog() {
               className="w-full pl-11 pr-5 py-3.5 rounded-2xl text-sm font-medium outline-none"
               style={{
                 background: "rgba(255,255,255,0.08)",
-                border: "1.5px solid rgba(255,255,255,0.15)",
+                border: `1.5px solid ${CYAN}35`,
                 color: "white",
                 backdropFilter: "blur(10px)",
               }}
@@ -200,10 +204,10 @@ export default function Blog() {
               <button key={c} onClick={() => setActiveCategory(c)}
                 className="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200"
                 style={{
-                  background: on ? "#0d1b3e" : "white",
+                  background: on ? INDIGO : "white",
                   color: on ? "white" : "rgba(13,27,62,0.55)",
-                  border: `1.5px solid ${on ? "#0d1b3e" : "rgba(13,27,62,0.1)"}`,
-                  boxShadow: on ? "0 6px 20px rgba(13,27,62,0.18)" : "none",
+                  border: `1.5px solid ${on ? INDIGO : "rgba(13,27,62,0.1)"}`,
+                  boxShadow: on ? `0 6px 20px ${INDIGO}30` : "none",
                 }}>
                 {c}
               </button>
@@ -217,27 +221,27 @@ export default function Blog() {
         {/* ── Featured post ── */}
         {showFeatured && featured && (
           <div className="mb-14 rounded-3xl overflow-hidden"
-            style={{ boxShadow: "0 24px 64px rgba(13,27,62,0.12)", border: "1px solid rgba(13,27,62,0.07)" }}>
+            style={{ boxShadow: "0 24px 64px rgba(13,27,62,0.12)", border: `1px solid ${INDIGO}15` }}>
             <div className="grid lg:grid-cols-2">
               <div className="relative h-64 lg:h-auto min-h-[280px]">
                 <img src={featured.image} alt={featured.title} className="w-full h-full object-cover object-center" />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(255,255,255,0.05) 100%)" }} />
                 <span className="absolute top-5 left-5 px-3 py-1.5 rounded-full text-xs font-bold"
-                  style={{ background: categoryColors[featured.category] || "#1EC8E8", color: "white" }}>
+                  style={{ background: INDIGO, color: "white" }}>
                   Featured
                 </span>
               </div>
               <div className="p-8 md:p-10 flex flex-col justify-center bg-white">
                 <div className="flex items-center gap-2 mb-4">
-                  <Tag size={12} style={{ color: categoryColors[featured.category] }} />
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: categoryColors[featured.category] }}>
+                  <Tag size={12} style={{ color: categoryColors[featured.category] || INDIGO }} />
+                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: categoryColors[featured.category] || INDIGO }}>
                     {featured.category}
                   </span>
                 </div>
                 <h2 className="font-black text-2xl md:text-3xl leading-tight mb-4" style={{ color: "#0d1b3e", letterSpacing: "-0.02em" }}>
                   {featured.title}
                 </h2>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(13,27,62,0.55)" }}>{featured.excerpt}</p>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(13,27,62,0.58)" }}>{featured.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-semibold" style={{ color: "#0d1b3e" }}>{featured.author}</p>
@@ -245,7 +249,7 @@ export default function Blog() {
                   </div>
                   <Link to={featured.slug ? `/blog/${featured.slug}` : "#"}
                     className="group flex items-center gap-2 font-bold px-5 py-3 rounded-xl text-white text-sm transition-all duration-300 hover:scale-[1.04]"
-                    style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 8px 24px rgba(255,122,26,0.35)" }}>
+                    style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 8px 24px ${INDIGO}40` }}>
                     Read More <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -258,7 +262,7 @@ export default function Blog() {
         {rest.length > 0 ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
             {rest.map(post => {
-              const color = categoryColors[post.category] || "#1EC8E8";
+              const color = categoryColors[post.category] || INDIGO;
               const href = post.slug ? `/blog/${post.slug}` : "#";
               return (
                 <Link key={post.id} to={href}
@@ -278,7 +282,7 @@ export default function Blog() {
                     <h3 className="font-black text-base leading-snug mb-3 flex-1" style={{ color: "#0d1b3e" }}>
                       {post.title}
                     </h3>
-                    <p className="text-xs leading-relaxed mb-5" style={{ color: "rgba(13,27,62,0.5)" }}>
+                    <p className="text-xs leading-relaxed mb-5" style={{ color: "rgba(13,27,62,0.55)" }}>
                       {post.excerpt.slice(0, 110)}…
                     </p>
                     <div className="flex items-center justify-between pt-4"
@@ -309,20 +313,20 @@ export default function Blog() {
         {/* ── Newsletter CTA ── */}
         <div className="mt-20 rounded-3xl p-10 text-center"
           style={{ background: "linear-gradient(135deg,#0d1b3e 0%,#111d45 100%)", boxShadow: "0 24px 64px rgba(13,27,62,0.15)" }}>
-          <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: "#FF7A1A" }}>Stay in the Loop</p>
+          <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: CYAN_LIGHT }}>Stay in the Loop</p>
           <h3 className="font-black text-white text-2xl md:text-3xl mb-3 leading-tight" style={{ letterSpacing: "-0.02em" }}>
-            Get the Latest Articles<br /><span style={{ color: "#1EC8E8" }}>Delivered to Your Inbox</span>
+            Get the Latest Articles<br /><span style={{ color: CYAN_LIGHT }}>Delivered to Your Inbox</span>
           </h3>
-          <p className="text-white/45 text-sm mb-8 max-w-md mx-auto">
+          <p className="mb-8 max-w-md mx-auto text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
             Weekly insights on GATE, placements, AI learning, and career advice — no spam, just value.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
             <input type="email" placeholder="your@email.com"
               className="flex-1 px-5 py-3.5 rounded-2xl text-sm font-medium outline-none"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1.5px solid rgba(255,255,255,0.15)", color: "white" }} />
+              style={{ background: "rgba(255,255,255,0.08)", border: `1.5px solid ${CYAN}35`, color: "white" }} />
             <button
               className="font-bold px-7 py-3.5 rounded-2xl text-white text-sm transition-all duration-300 hover:scale-[1.04] shrink-0"
-              style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 8px 28px rgba(255,122,26,0.4)" }}>
+              style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 8px 28px ${INDIGO}45` }}>
               Subscribe
             </button>
           </div>

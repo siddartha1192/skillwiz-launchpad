@@ -53,6 +53,12 @@ function Counter({ end, suffix = "", run }: { end: number; suffix?: string; run:
   return <>{val.toLocaleString("en-IN")}{suffix}</>;
 }
 
+// Logo palette
+const INDIGO       = "#3f3f99";
+const CYAN         = "#41b7d1";
+const INDIGO_LIGHT = "#9898d4";
+const CYAN_LIGHT   = "#7dd8eb";
+
 /* ─── DATA ─── */
 const overviewFeatures = [
   { icon: Layers,    title: "All Under One Umbrella",            text: "Industry experts prepare well-researched content — tests, company-specific tests, study notes and videos. Our platform covers every type of assessment tailored to every need." },
@@ -65,7 +71,7 @@ const overviewFeatures = [
 
 const audiences = [
   {
-    id: "student", label: "Student", icon: Users, color: "#1EC8E8", light: "rgba(30,200,232,0.08)",
+    id: "student", label: "Student", icon: Users, color: CYAN, light: `${CYAN}14`,
     intro: "Engineering Students are at the core of our platform. We are part of the journey — whether it is finding a campus job or preparing for higher education.",
     features: [
       { icon: GraduationCap, title: "Industry Tailored Guidance",   text: "Learn from industry experts and college alumni mentors. Join webinars, take timely suggestions and grow under supervised guidance." },
@@ -79,7 +85,7 @@ const audiences = [
     ],
   },
   {
-    id: "teacher", label: "Teacher", icon: GraduationCap, color: "#FF7A1A", light: "rgba(255,122,26,0.08)",
+    id: "teacher", label: "Teacher", icon: GraduationCap, color: INDIGO, light: `${INDIGO}14`,
     intro: "Teachers are our partners with a common mission. We enable teachers by providing the right tools and data, making every teacher a career coach.",
     features: [
       { icon: Globe,         title: "Collaborate Effectively",     text: "Stay engaged after the classroom — social learning, post answers, monitor student behaviour, make announcements." },
@@ -92,7 +98,7 @@ const audiences = [
     ],
   },
   {
-    id: "institute", label: "Institute", icon: Building2, color: "#5353C8", light: "rgba(83,83,200,0.08)",
+    id: "institute", label: "Institute", icon: Building2, color: INDIGO, light: `${INDIGO}14`,
     intro: "Fulfill your mission of creating well-rounded students, motivated teachers and an engaging campus. Make decisions faster and take corrective action before issues happen.",
     features: [
       { icon: Globe,       title: "Engaged Campus",            text: "Make your campus social — students, teachers and staff discuss jobs, campus life, news and announcements." },
@@ -154,12 +160,12 @@ export default function PlacementPage() {
             {/* copy */}
             <div style={reveal(hero.visible, 0, "left")}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
-                style={{ background: "rgba(255,122,26,0.18)", color: "#FF7A1A", border: "1px solid rgba(255,122,26,0.35)" }}>
+                style={{ background: `${CYAN}22`, color: CYAN_LIGHT, border: `1px solid ${CYAN}45` }}>
                 <Target size={11} /> Flagship Product
               </div>
 
               <h1 className="font-black text-white leading-[1.02] mb-6" style={{ fontSize: "clamp(3.2rem,6vw,5.2rem)", letterSpacing: "-0.03em" }}>
-                My<span style={{ color: "#1EC8E8" }}>Placement</span>
+                My<span style={{ color: CYAN_LIGHT }}>Placement</span>
               </h1>
 
               <p className="text-white/70 leading-relaxed mb-4" style={{ fontSize: "clamp(1rem,1.5vw,1.2rem)", maxWidth: 520 }}>
@@ -172,7 +178,7 @@ export default function PlacementPage() {
 
               <div className="flex flex-wrap gap-4 mb-12">
                 <Link to="/demo" className="group flex items-center gap-2.5 font-bold px-8 py-4 rounded-2xl text-white text-base transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
-                  style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 10px 32px rgba(255,122,26,0.45)" }}>
+                  style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 10px 32px ${INDIGO}55` }}>
                   Request a Demo <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a href="#overview" className="flex items-center gap-2.5 font-semibold px-6 py-4 rounded-2xl text-white text-base transition-all duration-300 hover:scale-[1.04]"
@@ -185,7 +191,7 @@ export default function PlacementPage() {
               <div className="grid grid-cols-2 gap-3">
                 {["AI-Powered Skill Gap Detection","Campus + Higher Education","Real-Time Analytics","Works Offline Too"].map(t => (
                   <div key={t} className="flex items-center gap-2.5">
-                    <CheckCircle2 size={15} style={{ color: "#1EC8E8", flexShrink: 0 }} />
+                    <CheckCircle2 size={15} style={{ color: CYAN_LIGHT, flexShrink: 0 }} />
                     <span className="text-white/65 text-sm">{t}</span>
                   </div>
                 ))}
@@ -208,14 +214,14 @@ export default function PlacementPage() {
           OVERVIEW
       ══════════════════════════════ */}
       <section id="overview" ref={overview.ref} className="py-28 px-6 md:px-16"
-        style={{ background: "linear-gradient(135deg,#f0f9ff 0%,#ffffff 50%,#fff7f0 100%)" }}>
+        style={{ background: "linear-gradient(135deg,#f0f0ff 0%,#ffffff 50%,#f5f5ff 100%)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20" style={reveal(overview.visible)}>
-            <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: "#FF7A1A" }}>Platform Overview</p>
+            <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: INDIGO }}>Platform Overview</p>
             <h2 className="font-black mb-5" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#0d1b3e", letterSpacing: "-0.02em" }}>
-              Everything You Need,<br /><span style={{ color: "#1EC8E8" }}>All Under One Umbrella</span>
+              Everything You Need,<br /><span style={{ color: CYAN }}>All Under One Umbrella</span>
             </h2>
-            <p className="text-lg max-w-xl mx-auto" style={{ color: "rgba(13,27,62,0.5)" }}>
+            <p className="text-lg max-w-xl mx-auto" style={{ color: "rgba(13,27,62,0.55)" }}>
               A complete ecosystem bridging the gap between campus education and industry expectations.
             </p>
           </div>
@@ -225,29 +231,27 @@ export default function PlacementPage() {
               const Icon = f.icon;
               const active = hoveredCard === i;
               return (
-                <div key={i} style={reveal(overview.visible, i * 150)}
+                <div key={i}
                   className="rounded-3xl p-7 cursor-default transition-all duration-350"
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  {...{
-                    style: {
-                      ...reveal(overview.visible, i * 90),
-                      background: active ? "#0d1b3e" : "white",
-                      border: `2px solid ${active ? "#1EC8E8" : "rgba(13,27,62,0.07)"}`,
-                      boxShadow: active ? "0 24px 60px rgba(13,27,62,0.22)" : "0 4px 20px rgba(13,27,62,0.06)",
-                      transform: `${reveal(overview.visible, i * 90).transform ?? ""} ${active ? " translateY(-8px)" : ""}`,
-                      transition: "background 0.3s, border 0.3s, box-shadow 0.3s, transform 0.3s",
-                    }
+                  style={{
+                    ...reveal(overview.visible, i * 90),
+                    background: active ? "#0d1b3e" : "white",
+                    border: `2px solid ${active ? CYAN : "rgba(13,27,62,0.07)"}`,
+                    boxShadow: active ? `0 24px 60px rgba(13,27,62,0.22)` : "0 4px 20px rgba(13,27,62,0.06)",
+                    transform: `${reveal(overview.visible, i * 90).transform ?? ""} ${active ? " translateY(-8px)" : ""}`,
+                    transition: "background 0.3s, border 0.3s, box-shadow 0.3s, transform 0.3s",
                   }}
                 >
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-colors duration-300"
-                    style={{ background: active ? "rgba(30,200,232,0.15)" : "rgba(30,200,232,0.1)" }}>
-                    <Icon size={22} style={{ color: "#1EC8E8" }} />
+                    style={{ background: active ? `${CYAN}25` : `${CYAN}15` }}>
+                    <Icon size={22} style={{ color: active ? CYAN_LIGHT : CYAN }} />
                   </div>
                   <h3 className="font-bold text-xl mb-3 transition-colors duration-300" style={{ color: active ? "white" : "#0d1b3e" }}>
                     {f.title}
                   </h3>
-                  <p className="text-base leading-relaxed transition-colors duration-300" style={{ color: active ? "rgba(255,255,255,0.65)" : "rgba(13,27,62,0.55)" }}>
+                  <p className="text-base leading-relaxed transition-colors duration-300" style={{ color: active ? "rgba(255,255,255,0.72)" : "rgba(13,27,62,0.55)" }}>
                     {f.text}
                   </p>
                 </div>
@@ -281,13 +285,13 @@ export default function PlacementPage() {
                 <div className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1"
                   style={{ color: "rgba(13,27,62,0.45)" }}>Placement Rate</div>
                 <div className="text-3xl font-black leading-none"
-                  style={{ color: "#0d1b3e" }}>94<span style={{ color: "#FF7A1A" }}>%</span>
+                  style={{ color: "#0d1b3e" }}>94<span style={{ color: CYAN }}>%</span>
                 </div>
               </div>
 
               {/* Badge — Students */}
               <div className="absolute bottom-6 right-6 z-20 px-5 py-4 rounded-2xl"
-                style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 12px 40px rgba(255,122,26,0.45)" }}>
+                style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 12px 40px ${INDIGO}55` }}>
                 <div className="text-[10px] font-bold text-white/70 uppercase tracking-[0.15em] mb-1">Students Placed</div>
                 <div className="text-3xl font-black text-white leading-none">50,000+</div>
               </div>
@@ -298,22 +302,22 @@ export default function PlacementPage() {
           {/* RIGHT — scrolling text blocks */}
           <div className="lg:w-1/2 lg:pl-20 py-24 space-y-20 min-w-0">
             <div>
-              <p className="text-xs font-bold tracking-[3.5px] uppercase mb-4" style={{ color: "#1EC8E8" }}>Why MyPlacement</p>
+              <p className="text-xs font-bold tracking-[3.5px] uppercase mb-4" style={{ color: CYAN_LIGHT }}>Why MyPlacement</p>
               <h2 className="font-black text-white mb-6 leading-tight"
                 style={{ fontSize: "clamp(2rem,3.2vw,3rem)", letterSpacing: "-0.02em" }}>
-                From Campus<br />to Career,<br /><span style={{ color: "#FF7A1A" }}>We're With You</span>
+                From Campus<br />to Career,<br /><span style={{ color: CYAN_LIGHT }}>We're With You</span>
               </h2>
-              <p className="text-white/60 text-lg leading-relaxed">
+              <p className="text-white/65 text-lg leading-relaxed">
                 Our platform is the bridge between where students are and where they need to be — blending AI-driven insights, expert content, and real-time analytics to create measurable outcomes.
               </p>
             </div>
 
             {[
-              { icon: Brain,     color: "#1EC8E8", title: "AI Skill Gap Detection",           body: "Our AI engine analyses every student's performance in real-time, pinpoints exact knowledge gaps, and prescribes a personalised learning path — just like a doctor prescribing medicine tailored to the patient." },
-              { icon: Target,    color: "#FF7A1A", title: "Beyond Campus Jobs",               body: "Not every student wants a campus job. We simultaneously prepare students for GATE, GRE, GMAT and CAT — giving every student a personalised trajectory while they are still on campus." },
-              { icon: BarChart3, color: "#1EC8E8", title: "Predictive Employability Score",  body: "We don't just measure performance — we predict outcomes. Each student gets an employability score showing how close they are to a job in one or more industry profiles." },
-              { icon: Zap,       color: "#FF7A1A", title: "Continuous, Not One-Time",         body: "One-time tests only tell part of the story. Our platform runs ongoing assessments, tracks improvement week over week, flags regressions early and celebrates breakthroughs — all automated." },
-              { icon: Globe,     color: "#1EC8E8", title: "Social & Offline Learning",        body: "Students challenge friends, discuss questions and sync results whenever internet is available — making learning sticky, competitive and genuinely enjoyable even in low-connectivity environments." },
+              { icon: Brain,     color: CYAN_LIGHT,   title: "AI Skill Gap Detection",           body: "Our AI engine analyses every student's performance in real-time, pinpoints exact knowledge gaps, and prescribes a personalised learning path — just like a doctor prescribing medicine tailored to the patient." },
+              { icon: Target,    color: INDIGO_LIGHT, title: "Beyond Campus Jobs",               body: "Not every student wants a campus job. We simultaneously prepare students for GATE, GRE, GMAT and CAT — giving every student a personalised trajectory while they are still on campus." },
+              { icon: BarChart3, color: CYAN_LIGHT,   title: "Predictive Employability Score",  body: "We don't just measure performance — we predict outcomes. Each student gets an employability score showing how close they are to a job in one or more industry profiles." },
+              { icon: Zap,       color: INDIGO_LIGHT, title: "Continuous, Not One-Time",         body: "One-time tests only tell part of the story. Our platform runs ongoing assessments, tracks improvement week over week, flags regressions early and celebrates breakthroughs — all automated." },
+              { icon: Globe,     color: CYAN_LIGHT,   title: "Social & Offline Learning",        body: "Students challenge friends, discuss questions and sync results whenever internet is available — making learning sticky, competitive and genuinely enjoyable even in low-connectivity environments." },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
@@ -328,7 +332,7 @@ export default function PlacementPage() {
                         style={{ fontSize: "clamp(1.4rem,2vw,1.8rem)" }}>
                         {item.title}
                       </h3>
-                      <p className="text-white/60 text-base leading-relaxed group-hover:text-white/80 transition-colors duration-500">
+                      <p className="text-white/65 text-base leading-relaxed group-hover:text-white/85 transition-colors duration-500">
                         {item.body}
                       </p>
                     </div>
@@ -345,15 +349,15 @@ export default function PlacementPage() {
           AUDIENCE TABS
       ══════════════════════════════ */}
       <section ref={tabSec.ref} className="py-28 px-6 md:px-16"
-        style={{ background: "linear-gradient(135deg,#ffffff 0%,#f0f9ff 50%,#fff7f0 100%)" }}>
+        style={{ background: "linear-gradient(135deg,#ffffff 0%,#f0f0ff 50%,#f5f5ff 100%)" }}>
         <div className="max-w-6xl mx-auto">
 
           <div className="text-center mb-14" style={reveal(tabSec.visible)}>
-            <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: "#FF7A1A" }}>Who It's For</p>
+            <p className="text-xs font-bold tracking-[3.5px] uppercase mb-3" style={{ color: INDIGO }}>Who It's For</p>
             <h2 className="font-black mb-4" style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)", color: "#0d1b3e", letterSpacing: "-0.02em" }}>
-              Built for <span style={{ color: "#1EC8E8" }}>Everyone</span> on Campus
+              Built for <span style={{ color: CYAN }}>Everyone</span> on Campus
             </h2>
-            <p className="text-lg" style={{ color: "rgba(13,27,62,0.45)" }}>
+            <p className="text-lg" style={{ color: "rgba(13,27,62,0.50)" }}>
               One platform, three powerful experiences.
             </p>
           </div>
@@ -413,7 +417,7 @@ export default function PlacementPage() {
                     <Icon size={20} style={{ color: aud.color }} />
                   </div>
                   <h4 className="font-bold text-base mb-2" style={{ color: "#0d1b3e" }}>{f.title}</h4>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(13,27,62,0.52)" }}>{f.text}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(13,27,62,0.55)" }}>{f.text}</p>
                 </div>
               );
             })}
@@ -431,23 +435,23 @@ export default function PlacementPage() {
           backgroundSize: "28px 28px",
         }} />
         <div className="absolute left-1/4 -top-20 w-96 h-96 rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle,rgba(30,200,232,0.12) 0%,transparent 70%)" }} />
+          style={{ background: `radial-gradient(circle,${CYAN}1e 0%,transparent 70%)` }} />
         <div className="absolute right-1/4 -bottom-20 w-96 h-96 rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle,rgba(255,122,26,0.12) 0%,transparent 70%)" }} />
+          style={{ background: `radial-gradient(circle,${INDIGO}1e 0%,transparent 70%)` }} />
 
         <div className="relative z-10 max-w-3xl mx-auto" style={reveal(ctaSec.visible)}>
-          <p className="text-xs font-bold tracking-[3.5px] uppercase mb-5" style={{ color: "#FF7A1A" }}>Get Started Today</p>
+          <p className="text-xs font-bold tracking-[3.5px] uppercase mb-5" style={{ color: CYAN_LIGHT }}>Get Started Today</p>
           <h2 className="font-black text-white mb-6 leading-tight" style={{ fontSize: "clamp(2.4rem,5vw,4rem)", letterSpacing: "-0.03em" }}>
-            Ready to Transform<br />Your <span style={{ color: "#1EC8E8" }}>Campus Placements?</span>
+            Ready to Transform<br />Your <span style={{ color: CYAN_LIGHT }}>Campus Placements?</span>
           </h2>
-          <p className="text-white/55 text-xl leading-relaxed mb-12">
+          <p className="text-white/60 text-xl leading-relaxed mb-12">
             Join <span className="text-white font-semibold">200+ engineering institutes</span> that trust MyPlacement to prepare students, empower teachers and drive measurable outcomes.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
             <Link to="/demo"
               className="group flex items-center gap-3 font-bold px-12 py-5 rounded-2xl text-white text-lg transition-all duration-300 hover:scale-[1.04] hover:-translate-y-1"
-              style={{ background: "linear-gradient(135deg,#FF7A1A,#FF9847)", boxShadow: "0 14px 44px rgba(255,122,26,0.5)" }}>
+              style={{ background: `linear-gradient(135deg, ${INDIGO}, #5252b8)`, boxShadow: `0 14px 44px ${INDIGO}55` }}>
               Request a Demo
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -460,14 +464,14 @@ export default function PlacementPage() {
 
           <div className="flex items-center justify-center gap-12 flex-wrap">
             {[
-              { value: "200+",  label: "Institutes",   color: "#1EC8E8" },
-              { value: "50K+",  label: "Students",     color: "#FF7A1A" },
-              { value: "94%",   label: "Success Rate", color: "#1EC8E8" },
-              { value: "99K+",  label: "Questions",    color: "#FF7A1A" },
+              { value: "200+",  label: "Institutes",   color: CYAN_LIGHT   },
+              { value: "50K+",  label: "Students",     color: INDIGO_LIGHT },
+              { value: "94%",   label: "Success Rate", color: CYAN_LIGHT   },
+              { value: "99K+",  label: "Questions",    color: INDIGO_LIGHT },
             ].map(({ value, label, color }) => (
               <div key={label} className="text-center group cursor-default">
                 <div className="text-3xl font-black mb-1 transition-transform duration-200 group-hover:scale-110" style={{ color }}>{value}</div>
-                <div className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</div>
+                <div className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</div>
               </div>
             ))}
           </div>

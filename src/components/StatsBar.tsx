@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const stats = [
-  { end: 50131,  suffix: "",  label: "Students",      color: "#1EC8E8" },
-  { end: 198,    suffix: "",  label: "Teachers",       color: "#FF7A1A" },
-  { end: 196355, suffix: "",  label: "Attempts",       color: "#1EC8E8" },
-  { end: 6341,   suffix: "",  label: "Tests",          color: "#FF7A1A" },
-  { end: 99944,  suffix: "",  label: "Questions",      color: "#1EC8E8" },
-  { end: 50000,  suffix: "+", label: "Hours Learned",  color: "#FF7A1A" },
+  { end: 50131,  suffix: "",  label: "Students",      color: "#41b7d1" },
+  { end: 198,    suffix: "",  label: "Teachers",       color: "#3f3f99" },
+  { end: 196355, suffix: "",  label: "Attempts",       color: "#41b7d1" },
+  { end: 6341,   suffix: "",  label: "Tests",          color: "#3f3f99" },
+  { end: 99944,  suffix: "",  label: "Questions",      color: "#41b7d1" },
+  { end: 50000,  suffix: "+", label: "Hours Learned",  color: "#3f3f99" },
 ];
 
 function Counter({ end, suffix, run }: { end: number; suffix: string; run: boolean }) {
@@ -46,19 +46,20 @@ export default function StatsBar() {
         backgroundSize: "28px 28px",
       }} />
 
-      {/* Orange glow left */}
+      {/* Indigo glow left */}
       <div className="absolute -left-20 top-1/2 -translate-y-1/2 pointer-events-none" style={{
         width: 300, height: 300, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,122,26,0.1) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(63,63,153,0.18) 0%, transparent 70%)",
       }} />
       {/* Cyan glow right */}
       <div className="absolute -right-20 top-1/2 -translate-y-1/2 pointer-events-none" style={{
         width: 300, height: 300, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(30,200,232,0.1) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(65,183,209,0.12) 0%, transparent 70%)",
       }} />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-white/[0.07]">
+      {/* ── DESKTOP ── */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 hidden md:block">
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 divide-x divide-white/[0.07]">
           {stats.map((s, i) => {
             const active = hovered === i;
             return (
@@ -69,7 +70,6 @@ export default function StatsBar() {
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
               >
-                {/* Top accent bar */}
                 <div
                   className="absolute top-0 left-1/2 -translate-x-1/2 h-[3px] rounded-b-full transition-all duration-400"
                   style={{
@@ -78,8 +78,6 @@ export default function StatsBar() {
                     boxShadow: active ? `0 0 12px ${s.color}` : "none",
                   }}
                 />
-
-                {/* Number */}
                 <div
                   className="font-black leading-none mb-2 transition-all duration-300"
                   style={{
@@ -91,8 +89,6 @@ export default function StatsBar() {
                 >
                   <Counter end={s.end} suffix={s.suffix} run={isVisible} />
                 </div>
-
-                {/* Label */}
                 <div
                   className="text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors duration-300"
                   style={{ color: active ? s.color : "rgba(255,255,255,0.3)" }}
@@ -102,6 +98,41 @@ export default function StatsBar() {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* ── MOBILE: compact 3-col grid, 2 rows ── */}
+      <div className="relative z-10 md:hidden px-3 py-5">
+        <div className="grid grid-cols-3 gap-[1px] rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              className={`flex flex-col items-center justify-center py-4 px-2 text-center ${isVisible ? "animate-slide-up" : "opacity-0"}`}
+              style={{
+                animationDelay: `${i * 60}ms`,
+                background: "rgba(255,255,255,0.02)",
+                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
+              }}
+            >
+              {/* Colored dot accent */}
+              <div className="w-1.5 h-1.5 rounded-full mb-1.5" style={{ background: s.color, boxShadow: `0 0 6px ${s.color}` }} />
+              {/* Number */}
+              <div
+                className="font-black leading-none text-[1.15rem] tracking-tight"
+                style={{ color: "rgba(255,255,255,0.92)" }}
+              >
+                <Counter end={s.end} suffix={s.suffix} run={isVisible} />
+              </div>
+              {/* Label */}
+              <div
+                className="text-[9px] font-semibold uppercase tracking-widest mt-1 leading-tight"
+                style={{ color: s.color, opacity: 0.8 }}
+              >
+                {s.label}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

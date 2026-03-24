@@ -48,18 +48,18 @@ const CYAN_LIGHT   = "#7dd8eb";
 // Light-bg data: uses INDIGO / CYAN
 const values = [
   { icon: Heart,    color: INDIGO, title: "Authenticity", desc: "To be genuine and vulnerable." },
-  { icon: Sparkles, color: CYAN,   title: "Simplicity",   desc: "Distill to the meaningful and balanced." },
+  { icon: Sparkles, color: INDIGO, title: "Simplicity",   desc: "Distill to the meaningful and balanced." },
   { icon: Zap,      color: INDIGO, title: "Drive",        desc: "Do what you love." },
-  { icon: Compass,  color: CYAN,   title: "Adventure",    desc: "Take risks and embrace where they take you." },
+  { icon: Compass,  color: INDIGO, title: "Adventure",    desc: "Take risks and embrace where they take you." },
   { icon: Star,     color: INDIGO, title: "Appreciation", desc: "Dwell on the good." },
 ];
 
 const differences = [
-  { icon: Target,        color: CYAN,   title: "Personalized Learning", desc: "Tailored experiences for learners and educators." },
+  { icon: Target,        color: INDIGO, title: "Personalized Learning", desc: "Tailored experiences for learners and educators." },
   { icon: Zap,           color: INDIGO, title: "Innovative Approach",   desc: "Beyond textbooks, fostering real-world skills." },
-  { icon: Users,         color: CYAN,   title: "Community-Driven",      desc: "A network of passionate educators and learners." },
+  { icon: Users,         color: INDIGO, title: "Community-Driven",      desc: "A network of passionate educators and learners." },
   { icon: Globe,         color: INDIGO, title: "Tech-Enabled Growth",   desc: "Seamless, smart, and adaptive learning solutions." },
-  { icon: GraduationCap, color: CYAN,   title: "Future-Ready",          desc: "Constantly evolving to shape tomorrow's education." },
+  { icon: GraduationCap, color: INDIGO, title: "Future-Ready",          desc: "Constantly evolving to shape tomorrow's education." },
 ];
 
 // Dark-bg data: uses lighter variants

@@ -31,18 +31,18 @@ export default function Footer() {
             <p className="text-white/40 text-sm mt-0.5">Get updates on new features, placements &amp; tips.</p>
           </div>
           {subscribed ? (
-            <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: "#41b7d1" }}>
+            <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: "rgba(255,255,255,0.85)" }}>
               <CheckCircle2 size={18} /> Thanks for subscribing!
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex items-center gap-2 w-full sm:w-auto">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
               <input
                 type="email"
                 required
                 placeholder="Enter your email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                className="flex-1 sm:w-64 px-4 py-2.5 rounded-xl text-sm outline-none transition-all duration-200"
+                className="w-full sm:w-64 px-4 py-2.5 rounded-xl text-sm outline-none transition-all duration-200"
                 style={{
                   background: "rgba(255,255,255,0.07)",
                   border: "1.5px solid rgba(255,255,255,0.12)",
@@ -52,7 +52,7 @@ export default function Footer() {
                 onBlur={e => { (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
               />
               <button type="submit"
-                className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:scale-[1.04] shrink-0"
+                className="flex items-center justify-center gap-1.5 w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:scale-[1.04]"
                 style={{ background: "linear-gradient(135deg,#3f3f99,#5252b8)", boxShadow: "0 6px 20px rgba(63,63,153,0.4)" }}>
                 Subscribe <ArrowRight size={14} />
               </button>
@@ -77,7 +77,7 @@ export default function Footer() {
             </p>
             <p
               className="text-sm font-semibold mb-5"
-              style={{ color: "#41b7d1" }}
+              style={{ color: "rgba(255,255,255,0.55)" }}
             >
               Empowering Skills, Shaping Futures.
             </p>
@@ -127,8 +127,8 @@ export default function Footer() {
 
               <li className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: "rgba(63,63,153,0.12)" }}>
-                  <Phone size={14} style={{ color: "#3f3f99" }} />
+                  style={{ background: "rgba(255,255,255,0.08)" }}>
+                  <Phone size={14} style={{ color: "rgba(255,255,255,0.70)" }} />
                 </span>
                 <div>
                   <div className="text-white/30 text-[10px] uppercase tracking-widest mb-0.5">Phone</div>
@@ -140,8 +140,8 @@ export default function Footer() {
 
               <li className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: "rgba(65,183,209,0.12)" }}>
-                  <Mail size={14} style={{ color: "#41b7d1" }} />
+                  style={{ background: "rgba(255,255,255,0.08)" }}>
+                  <Mail size={14} style={{ color: "rgba(255,255,255,0.70)" }} />
                 </span>
                 <div>
                   <div className="text-white/30 text-[10px] uppercase tracking-widest mb-0.5">Email</div>
@@ -153,8 +153,8 @@ export default function Footer() {
 
               <li className="flex items-start gap-3">
                 <span className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                  style={{ background: "rgba(63,63,153,0.12)" }}>
-                  <MapPin size={14} style={{ color: "#3f3f99" }} />
+                  style={{ background: "rgba(255,255,255,0.08)" }}>
+                  <MapPin size={14} style={{ color: "rgba(255,255,255,0.70)" }} />
                 </span>
                 <div>
                   <div className="text-white/30 text-[10px] uppercase tracking-widest mb-0.5">Address</div>

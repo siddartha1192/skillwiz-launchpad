@@ -464,13 +464,13 @@ export default function PlacementPage() {
 
           <div className="flex items-center justify-center gap-12 flex-wrap">
             {[
-              { value: "200+",  label: "Institutes",   color: CYAN_LIGHT   },
-              { value: "50K+",  label: "Students",     color: INDIGO_LIGHT },
-              { value: "94%",   label: "Success Rate", color: CYAN_LIGHT   },
-              { value: "99K+",  label: "Questions",    color: INDIGO_LIGHT },
-            ].map(({ value, label, color }) => (
+              { value: "200+", label: "Institutes"   },
+              { value: "50K+", label: "Students"     },
+              { value: "94%",  label: "Success Rate" },
+              { value: "99K+", label: "Questions"    },
+            ].map(({ value, label }) => (
               <div key={label} className="text-center group cursor-default">
-                <div className="text-3xl font-black mb-1 transition-transform duration-200 group-hover:scale-110" style={{ color }}>{value}</div>
+                <div className="text-3xl font-black mb-1 transition-transform duration-200 group-hover:scale-110" style={{ color: "rgba(255,255,255,0.92)" }}>{value}</div>
                 <div className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</div>
               </div>
             ))}
